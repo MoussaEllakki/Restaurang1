@@ -6,54 +6,42 @@
     <data>
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#2196F3"
         tools:context=".TablesFragment">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:id="@+id/choose_table_textview"
-            android:textSize="30dp"
-            android:text="@string/choose_table_textview"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/restaurantID_textview"
-            android:textAlignment="center">
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="40dp"
             android:id="@+id/restaurantID_textview"
-            android:text="xxxx"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginTop="30dp"
+            android:text="xxxx"
             android:textAlignment="center"
             android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_for_tables"
-            android:layout_width="0dp"
+            android:layout_width="421dp"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="100dp"
+            android:background="#2196F3"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/choose_table_textview"
-            app:layout_constraintVertical_bias="0.0"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/restaurantID_textview"
+            app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

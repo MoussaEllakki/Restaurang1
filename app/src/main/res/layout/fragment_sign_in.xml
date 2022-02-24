@@ -10,50 +10,58 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg2"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/logIn_textview"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/signInText"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-        <EditText
-            android:id="@+id/restaurangId_editText"
+        <Button
+            android:id="@+id/button_enter"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/edittext_backgroud"
-            android:hint="Restaurant ID"
-            android:inputType="number"
-            android:paddingStart="5dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/edittext_design"
+            android:text="Enter"
+            android:textColor="#C7C5C9"
+            android:textSize="20sp"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logIn_textview"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/restaurantID_editText" />
 
-        <Button
-            android:id="@+id/logIN_button"
+        <TextView
+            android:id="@+id/restaurang_name_textview"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/signInButton"
-            android:textSize="20dp"
-            app:cornerRadius="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="32dp"
+            android:text="Delicious"
+            android:textAlignment="center"
+            android:textColor="#C7C5C9"
+            android:textSize="34sp"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/restaurangId_editText"></Button>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/restaurantID_editText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/edittext_design"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="  Restaurant ID"
+            android:textColorHint="#6C6966"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurang_name_textview" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
