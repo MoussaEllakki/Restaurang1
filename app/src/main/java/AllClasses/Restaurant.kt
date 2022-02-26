@@ -35,13 +35,18 @@ class Restaurant {
 
 
 
-    fun sendOrderToKitchen(table: Table , tableNumber: String , restaurantId: String){
+    fun sendOrder(guests: List<Guest> , tableNumber: String , restaurantId: String){
 
+           var tableNr = tableNumber.toInt() - 1
+          var tableNumberToString = tableNr.toString()
 
+        database.child("Restaurant").child(restaurantId).child("Bords")
+            .child(tableNumberToString).child("Guests").setValue(guests)
 
 
 
     }
+
 
 
 

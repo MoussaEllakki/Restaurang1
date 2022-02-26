@@ -18,22 +18,21 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import moussa.ellakki.databinding.FragmentOrderBinding
 
+var guestxx = Guest()
 
 class OrderFragment : Fragment() {
 
-
+    lateinit var database : DatabaseReference
 
       var dishesAdapter = DishesAdapter()
       var drinkAdapter = DrinkAdapter()
       var extraAdapter = ExtraAdapter()
 
-    var  guests = mutableListOf<Guest>()
+    var tableNumber = ""
 
-     var guestNumber  = 0
-     var tableNumber = ""
+    var guests  = mutableListOf<Guest>()
 
     lateinit var binding: FragmentOrderBinding
-
     val model: ViewModelID by activityViewModels()
 
     override fun onCreateView(
@@ -46,42 +45,40 @@ class OrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-          showMenue()
+        showMenue()
 
-         tableNumber =  requireArguments().getString("tableNumber").toString()
-         binding.tableNumberIOrderFragment.text = "Yor are taking order for table " + tableNumber
+        tableNumber = requireArguments().getString("tableNumber").toString()
+        binding.tableNumberIOrderFragment.text = "Yor are taking order for table " + tableNumber
 
         binding.orderGuidTextview.text = "Take order for guest 1"
 
 
 
-        binding.buttonNext.setOnClickListener{
+        binding.buttonNext.setOnClickListener {
 
-            guestNumber++
-            var guestNumberPlusOne = guestNumber + 1
+            var guest = Guest()
+            guests.add(guestxx)
+            guestxx = guest
 
-            binding.orderGuidTextview.text = "Take order for guest "+ guestNumberPlusOne
+            var guestnumber = guests.size + 1
+
+            binding.orderGuidTextview.text = "Take order for guest " + guestnumber.toString()
 
         }
 
-      binding.buttonSendOrder.setOnClickListener{
+        binding.buttonSendOrder.setOnClickListener {
+
+            var restaurant = Restaurant()
+
+            guests.add(guestxx)
+
+            restaurant.sendOrder(guests, tableNumber, model.restaurantID)
 
 
-
-
-
-
-
-
-
-      }
-
+        }
 
 
     }
-
-
-
 
 
 

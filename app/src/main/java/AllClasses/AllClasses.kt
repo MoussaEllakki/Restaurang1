@@ -22,13 +22,64 @@ class Guest {
 }
 
 class Table {
+
     var available = true
     var Wholeorder = ""
     var wholesum = 0.0
 
     var guests = mutableListOf<Guest>()
 
+
+    fun fillOrder (guest : Guest){
+
+      guests.add(guest)
+
+    }
+
+
+
+
+
+
 }
+
+
+class Order(){
+
+
+
+
+  companion object{
+
+      var guests = mutableListOf<Guest>()
+
+      var guest = Guest()
+
+
+      fun fillOrder(order : String){
+
+        guest.guestorder += order
+
+      }
+
+
+      fun sendOrder(){
+
+          this.guests.add(this.guest)
+
+         this.guest.guestorder = ""
+      }
+
+
+
+  }
+
+
+
+
+}
+
+
 
 
 

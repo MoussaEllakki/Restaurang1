@@ -1,19 +1,27 @@
 package AllClasses
 
+import android.app.Activity
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import moussa.ellakki.OrderFragment
 import moussa.ellakki.R
+import moussa.ellakki.guestxx
 
 
 class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
 
 
     var dishes = mutableListOf<Dish>()
+
+
+      lateinit var orderFragment: OrderFragment
+
 
 
     override fun getItemCount(): Int {
@@ -23,21 +31,29 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
     override fun onBindViewHolder(holder: DishesViewHolder, position: Int) {
 
 
-        holder.foodType.text =  dishes[position].name +" "+ dishes[position].pris.toString()
+        holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
-        holder.itemView.setOnClickListener{
 
-            var orderFragment = OrderFragment()
-             var  guests = orderFragment.guests
-            var guesNumber = orderFragment.guestNumber
+          holder.foodType.setOnClickListener{
 
-                guests[guesNumber].guestorder += dishes[position].name + " - "
-                guests[guesNumber].guestsum += dishes[position].pris!!
+
+              guestxx.guestorder +=  dishes[position].name + " - "
+              guestxx.guestsum  += dishes[position].pris!!
+
+
+          }
+
+
+
+
+
+
+
 
 
         }
 
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishesViewHolder {
 
@@ -46,6 +62,11 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         )
         return viewHolder
     }
+
+
+
+
+
 
 }
 
@@ -69,15 +90,12 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
         holder.foodType.text = drinks[position].name + " " + drinks[position].pris.toString()
 
-        holder.itemView.setOnClickListener{
+        holder.foodType.setOnClickListener{
 
-            var orderFragment = OrderFragment()
-            var  guests = orderFragment.guests
-            var guesNumber = orderFragment.guestNumber
 
-            guests[guesNumber].guestorder += drinks[position].name + " - "
-            guests[guesNumber].guestsum += drinks[position].pris!!
 
+            guestxx.guestorder +=  drinks[position].name + " - "
+            guestxx.guestsum  += drinks[position].pris!!
 
 
 
@@ -112,17 +130,10 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
         holder.foodType.text = extras[position].name + " " +extras[position].pris.toString()
 
+        holder.foodType.setOnClickListener{
 
-        holder.itemView.setOnClickListener{
-
-            var orderFragment = OrderFragment()
-
-            var  guests = orderFragment.guests
-            var guesNumber = orderFragment.guestNumber
-
-            guests[guesNumber].guestorder += extras[position].name + " - "
-            guests[guesNumber].guestsum += extras[position].pris!!
-
+            guestxx.guestorder +=  extras[position].name + " - "
+            guestxx.guestsum  += extras[position].pris!!
 
 
         }
@@ -141,6 +152,9 @@ class ExtraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
   //  var foodprice = view.findViewById<TextView>(R.id.food_price_textview)
     var foodType = view.findViewById<Button>(R.id.food_button)
+
+
+
 
 }
 
