@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg2"
+        android:background="@drawable/bgblack"
         tools:context=".MainActivity">
 
         <Button
@@ -20,9 +20,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/edittext_design"
+            android:background="#FC9803"
             android:text="Enter"
-            android:textColor="#C7C5C9"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +38,8 @@
             android:layout_marginEnd="32dp"
             android:text="Delicious"
             android:textAlignment="center"
-            android:textColor="#C7C5C9"
-            android:textSize="34sp"
+            android:textColor="#FC9803"
+            android:textSize="40dp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -55,8 +55,8 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/edittext_design"
             android:ems="10"
-            android:inputType="number"
             android:hint="  Restaurant ID"
+            android:inputType="number"
             android:textColorHint="#6C6966"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

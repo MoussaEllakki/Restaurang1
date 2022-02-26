@@ -32,8 +32,11 @@ class TablesFragment : Fragment() {
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.tables =  model.tables
+        tableAdapter.model = model
+        tableAdapter.activity = this.requireActivity()
 
     }
+
 
 
 

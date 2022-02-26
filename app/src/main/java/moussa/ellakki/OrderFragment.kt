@@ -1,9 +1,6 @@
 package moussa.ellakki
 
-import AllClasses.DishesAdapter
-import AllClasses.DrinkAdapter
-import AllClasses.ExtraAdapter
-import AllClasses.ViewModelID
+import AllClasses.*
 
 
 import android.os.Bundle
@@ -16,14 +13,24 @@ import androidx.fragment.app.activityViewModels
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import moussa.ellakki.databinding.FragmentOrderBinding
 
 
 class OrderFragment : Fragment() {
 
-    var dishesAdapter = DishesAdapter()
-    var drinkAdapter = DrinkAdapter()
-    var extraAdapter = ExtraAdapter()
+
+
+      var dishesAdapter = DishesAdapter()
+      var drinkAdapter = DrinkAdapter()
+      var extraAdapter = ExtraAdapter()
+
+    var  guests = mutableListOf<Guest>()
+
+     var guestNumber  = 0
+     var tableNumber = ""
 
     lateinit var binding: FragmentOrderBinding
 
@@ -39,21 +46,79 @@ class OrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+          showMenue()
 
-        var menuRecyclerView = view.findViewById<RecyclerView>(R.id.menu_recyclerView)
-        menuRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+         tableNumber =  requireArguments().getString("tableNumber").toString()
+         binding.tableNumberIOrderFragment.text = "Yor are taking order for table " + tableNumber
+
+        binding.orderGuidTextview.text = "Take order for guest 1"
+
+
+
+        binding.buttonNext.setOnClickListener{
+
+            guestNumber++
+            var guestNumberPlusOne = guestNumber + 1
+
+            binding.orderGuidTextview.text = "Take order for guest "+ guestNumberPlusOne
+
+        }
+
+      binding.buttonSendOrder.setOnClickListener{
+
+
+
+
+
+
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+    fun showMenue() {
+
+
+
+        var menuRecyclerView = binding.menuRecyclerView
+        menuRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         menuRecyclerView.adapter = dishesAdapter
         dishesAdapter.dishes = model.dishes
 
-        var drinkRecyclerView = view.findViewById<RecyclerView>(R.id.drink_recyclerView)
-        drinkRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+
+        var drinkRecyclerView = binding.drinkRecyclerView
+        drinkRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         drinkRecyclerView.adapter = drinkAdapter
         drinkAdapter.drinks = model.drinks
 
-        var extraRecyclerView = view.findViewById<RecyclerView>(R.id.extra_recyclerView)
-        extraRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
+
+        var extraRecyclerView = binding.extraRecyclerView
+        extraRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
         extraRecyclerView.adapter = extraAdapter
         extraAdapter.extras = model.extras
+
+
     }
+
+
+
+
+
+
 
 }

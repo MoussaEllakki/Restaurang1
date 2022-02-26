@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2196F3"
+        android:background="@drawable/bgblack"
         tools:context=".TablesFragment">
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
-            android:text="xxxx"
+            android:text="All Tables"
             android:textAlignment="center"
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="100dp"
-            android:background="#2196F3"
+            android:background="#FC9803"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

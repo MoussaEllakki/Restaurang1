@@ -1,19 +1,17 @@
 package AllClasses
 
-
-class Dish(var name: String? = null, var pris: Double? = null) {
-
-}
-
-class Drink(var name: String? = null, var pris: Double? = null) {
-
+class Dish (var name : String? = "" , var pris : Double? = 0.0) {
 
 }
 
-class Extra(var name: String? = null, var pris: Double? = null) {
+class Drink (var name : String? = "" , var pris : Double? = 0.0){
+
 
 }
 
+class Extra(var name : String? = "" , var pris : Double? = 0.0){
+
+}
 
 class Guest {
 
@@ -24,19 +22,13 @@ class Guest {
 }
 
 class Table {
-
     var available = true
     var Wholeorder = ""
     var wholesum = 0.0
+
     var guests = mutableListOf<Guest>()
 
 }
 
-class Restaurant {
-
-    var restaurantID = ""
-    var tables = mutableListOf<Table>()
-
-}
 
 

@@ -7,6 +7,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import AllClasses.IsRightRestaurantID
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import moussa.ellakki.TableAdapter
 
 class ViewModelID : ViewModel() {
 
@@ -26,6 +30,8 @@ class ViewModelID : ViewModel() {
     init {
         database = Firebase.database.reference
     }
+
+
 
     fun controllid(restaurangID: String) {
 
@@ -48,6 +54,7 @@ class ViewModelID : ViewModel() {
 
     fun getAllTabel(restaurantId: String) {
 
+        tables.clear()
         database.child("Restaurant").child(restaurantId)
             .child("Bords").get().addOnSuccessListener {
 
@@ -61,6 +68,7 @@ class ViewModelID : ViewModel() {
 
 
     fun getDishes(restaurantId: String) {
+        dishes.clear()
         database.child("Restaurant").child(restaurantId)
             .child("Dishes").get().addOnSuccessListener {
 
@@ -74,6 +82,7 @@ class ViewModelID : ViewModel() {
 
     fun getDirinks(restaurantId: String) {
 
+        drinks.clear()
         database.child("Restaurant").child(restaurantId)
             .child("Drinks").get().addOnSuccessListener {
                 for (childsnap in it.children) {
@@ -86,6 +95,7 @@ class ViewModelID : ViewModel() {
 
     fun getExtra(restaurantId: String) {
 
+        extras.clear()
         database.child("Restaurant").child(restaurantId)
             .child("Extras").get().addOnSuccessListener {
 
@@ -96,6 +106,26 @@ class ViewModelID : ViewModel() {
                 }
             }
     }
+
+    fun updateAllTabels(restaurantId: String , adapter: TableAdapter) {
+        tables.clear()
+        database.child("Restaurant").child(restaurantId)
+            .child("Bords").get().addOnSuccessListener {
+
+                for (childsnap in it.children) {
+                    val table = childsnap.getValue<Table>()
+                    tables.add(table!!)
+                }
+
+               // TODO() Fråga Bil
+                adapter.uppdateTableAdapter()
+            }
+
+
+
+    }
+
+
 
 
 }
