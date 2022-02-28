@@ -33,8 +33,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.buttonTakeOrder.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_tablesFragment)
+
         }
     }
 

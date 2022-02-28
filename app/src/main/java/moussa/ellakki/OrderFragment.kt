@@ -18,9 +18,11 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import moussa.ellakki.databinding.FragmentOrderBinding
 
-var guestxx = Guest()
+
 
 class OrderFragment : Fragment() {
+
+    var guest =  Guest()
 
     lateinit var database : DatabaseReference
 
@@ -44,6 +46,9 @@ class OrderFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
         super.onViewCreated(view, savedInstanceState)
         showMenue()
 
@@ -55,12 +60,15 @@ class OrderFragment : Fragment() {
 
 
         binding.buttonNext.setOnClickListener {
+            var removeGuest = Guest()
 
-            var guest = Guest()
-            guests.add(guestxx)
-            guestxx = guest
+            var guestNR = guests.size + 1
+            guest.guestnumber =  guestNR.toString()
 
+            guests.add(guest)
+            guest = removeGuest
             var guestnumber = guests.size + 1
+
 
             binding.orderGuidTextview.text = "Take order for guest " + guestnumber.toString()
 
@@ -70,9 +78,17 @@ class OrderFragment : Fragment() {
 
             var restaurant = Restaurant()
 
-            guests.add(guestxx)
+            var guestNR = guests.size + 1
+            guest.guestnumber =  guestNR.toString()
+
+              guests.add(guest)
+
+            var removeGuest = Guest()
+
+             guest = removeGuest
 
             restaurant.sendOrder(guests, tableNumber, model.restaurantID)
+
 
 
         }
@@ -94,21 +110,21 @@ class OrderFragment : Fragment() {
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         menuRecyclerView.adapter = dishesAdapter
         dishesAdapter.dishes = model.dishes
-
+       dishesAdapter.orderFragment = this
 
         var drinkRecyclerView = binding.drinkRecyclerView
         drinkRecyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         drinkRecyclerView.adapter = drinkAdapter
         drinkAdapter.drinks = model.drinks
-
+        drinkAdapter.orderFragment = this
 
         var extraRecyclerView = binding.extraRecyclerView
         extraRecyclerView.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
         extraRecyclerView.adapter = extraAdapter
         extraAdapter.extras = model.extras
-
+        extraAdapter.orderFragment = this
 
     }
 

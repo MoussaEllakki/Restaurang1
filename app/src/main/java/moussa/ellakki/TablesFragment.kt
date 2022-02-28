@@ -33,7 +33,8 @@ class TablesFragment : Fragment() {
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.tables =  model.tables
         tableAdapter.model = model
-        tableAdapter.activity = this.requireActivity()
+
+
 
     }
 

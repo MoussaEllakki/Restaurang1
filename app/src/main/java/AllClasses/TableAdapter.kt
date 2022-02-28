@@ -5,6 +5,7 @@ import AllClasses.Restaurant
 import AllClasses.Table
 import AllClasses.ViewModelID
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,7 +25,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
     var tables = mutableListOf<Table>()
     var bundle = Bundle()
     var restaurant = Restaurant()
-
+    var message = Message()
     lateinit var model: ViewModelID
     lateinit var activity: Activity
 
@@ -63,33 +64,35 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
                 restaurant.bookTable(position.toString(), model.restaurantID)
 
                 bundle.putString("tableNumber", numberToString)
+
+                model.updateAllTabels(model.restaurantID, this)
+
                 holder.itemView.findNavController()
                     .navigate(R.id.action_tablesFragment_to_orderFragment, bundle)
-                model.updateAllTabels(model.restaurantID, this)
+
             }
+
         } else {
 
             holder.table_image.setImageResource(R.drawable.tablered)
 
             holder.itemView.setOnClickListener {
-                sendMsg(
-                    "this Table is not availble if you want to use it press yes , but you gonna remove whole its order" +
-                            "otherwise press no to take another one", activity, position.toString()
-                )
+                sendMsg(message.tableBusy, holder.itemView.context, position.toString())
             }
 
         }
 
     }
 
-    fun sendMsg(msg: String, activity: Activity, tableNumber: String) {
+    fun sendMsg(msg: String, ctx: Context, tableNumber: String) {
 
-        val builder = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(ctx)
         builder.setTitle("Message")
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
             restaurant.removeBooking(tableNumber, model.restaurantID)
+
             model.updateAllTabels(model.restaurantID, this)
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->

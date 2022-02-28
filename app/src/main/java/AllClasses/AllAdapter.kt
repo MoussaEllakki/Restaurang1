@@ -11,7 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import moussa.ellakki.OrderFragment
 import moussa.ellakki.R
-import moussa.ellakki.guestxx
+
+
 
 
 class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
@@ -20,7 +21,7 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
     var dishes = mutableListOf<Dish>()
 
 
-      lateinit var orderFragment: OrderFragment
+    lateinit var orderFragment: OrderFragment
 
 
 
@@ -34,24 +35,25 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
 
-          holder.foodType.setOnClickListener{
+           var order = Order(dishes[position].name!!, dishes[position].pris!!)
 
 
-              guestxx.guestorder +=  dishes[position].name + " - "
-              guestxx.guestsum  += dishes[position].pris!!
+        holder.butonPlus.setOnClickListener{
 
+             orderFragment.guest.orders.add(order)
 
           }
 
+         holder.buttonMinus.setOnClickListener{
+
+            orderFragment.guest.orders.remove(order)
+
+         }
 
 
 
 
-
-
-
-
-        }
+    }
 
 
 
@@ -73,12 +75,14 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
 class DishesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
    // var foodprice = view.findViewById<TextView>(R.id.food_price_textview)
     var foodType = view.findViewById<Button>(R.id.food_button)
+    var butonPlus = view.findViewById<Button>(R.id.button_plus)
+    var buttonMinus = view.findViewById<Button>(R.id.button_minus)
 }
 
 
 class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
-
+    lateinit var orderFragment: OrderFragment
 
     var drinks = mutableListOf<Drink>()
 
@@ -90,16 +94,20 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
         holder.foodType.text = drinks[position].name + " " + drinks[position].pris.toString()
 
-        holder.foodType.setOnClickListener{
+        var order = Order(drinks[position].name!!, drinks[position].pris!!)
 
+        holder.butonPlus.setOnClickListener{
 
-
-            guestxx.guestorder +=  drinks[position].name + " - "
-            guestxx.guestsum  += drinks[position].pris!!
-
-
+            orderFragment.guest.orders.add(order)
 
         }
+
+        holder.buttonMinus.setOnClickListener{
+
+            orderFragment.guest.orders.remove(order)
+
+        }
+
 
     }
 
@@ -114,6 +122,8 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 class DrinksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
    // var foodprice = view.findViewById<TextView>(R.id.food_price_textview)
     var foodType = view.findViewById<Button>(R.id.food_button)
+    var butonPlus = view.findViewById<Button>(R.id.button_plus)
+    var buttonMinus = view.findViewById<Button>(R.id.button_minus)
 
 }
 
@@ -121,6 +131,7 @@ class DrinksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
     var extras = mutableListOf<Extra>()
+    lateinit var orderFragment: OrderFragment
 
     override fun getItemCount(): Int {
         return extras.size
@@ -130,13 +141,20 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
         holder.foodType.text = extras[position].name + " " +extras[position].pris.toString()
 
-        holder.foodType.setOnClickListener{
+        var order = Order(extras[position].name!!, extras[position].pris!!)
 
-            guestxx.guestorder +=  extras[position].name + " - "
-            guestxx.guestsum  += extras[position].pris!!
+        holder.butonPlus.setOnClickListener{
 
+            orderFragment.guest.orders.add(order)
 
         }
+
+        holder.buttonMinus.setOnClickListener{
+
+            orderFragment.guest.orders.remove(order)
+
+        }
+
 
     }
 
@@ -152,7 +170,8 @@ class ExtraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
   //  var foodprice = view.findViewById<TextView>(R.id.food_price_textview)
     var foodType = view.findViewById<Button>(R.id.food_button)
-
+    var butonPlus = view.findViewById<Button>(R.id.button_plus)
+    var buttonMinus = view.findViewById<Button>(R.id.button_minus)
 
 
 

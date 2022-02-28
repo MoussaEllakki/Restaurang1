@@ -8,6 +8,10 @@ import androidx.appcompat.app.AlertDialog
 
 class Message {
 
+
+    var tableBusy = "this Table is not availble if you want to use it press yes , but you gonna remove whole its order" +
+            "otherwise press no to take another one"
+
     fun sendMsg(msg : String , act : Activity){
         val builder = AlertDialog.Builder(act)
         builder.setTitle("Message")

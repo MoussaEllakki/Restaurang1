@@ -31,6 +31,12 @@ class Restaurant {
     fun removeBooking(tableNumber : String , restaurantId: String){
         database.child("Restaurant").child(restaurantId)
             .child("Bords").child(tableNumber).child("available").setValue(true)
+
+
+        var guests = mutableListOf<Guest>()
+        database.child("Restaurant").child(restaurantId).child("Bords")
+            .child(tableNumber).child("Guests").setValue(guests)
+
     }
 
 
@@ -46,6 +52,7 @@ class Restaurant {
 
 
     }
+
 
 
 

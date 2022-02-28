@@ -108,6 +108,7 @@ class ViewModelID : ViewModel() {
     }
 
     fun updateAllTabels(restaurantId: String , adapter: TableAdapter) {
+
         tables.clear()
         database.child("Restaurant").child(restaurantId)
             .child("Bords").get().addOnSuccessListener {
@@ -117,7 +118,7 @@ class ViewModelID : ViewModel() {
                     tables.add(table!!)
                 }
 
-               // TODO() Fråga Bil
+                // TODO() Fråga Bil
                 adapter.uppdateTableAdapter()
             }
 

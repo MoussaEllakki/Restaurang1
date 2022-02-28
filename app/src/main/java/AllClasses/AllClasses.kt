@@ -15,9 +15,10 @@ class Extra(var name : String? = "" , var pris : Double? = 0.0){
 
 class Guest {
 
+
+    var orders = mutableListOf<Order>()
+
     var guestnumber = ""
-    var guestsum = 0.0
-    var guestorder = ""
 
 }
 
@@ -44,35 +45,7 @@ class Table {
 }
 
 
-class Order(){
-
-
-
-
-  companion object{
-
-      var guests = mutableListOf<Guest>()
-
-      var guest = Guest()
-
-
-      fun fillOrder(order : String){
-
-        guest.guestorder += order
-
-      }
-
-
-      fun sendOrder(){
-
-          this.guests.add(this.guest)
-
-         this.guest.guestorder = ""
-      }
-
-
-
-  }
+class Order(var namn : String , var pris : Double){
 
 
 
