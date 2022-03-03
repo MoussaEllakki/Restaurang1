@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -32,18 +33,17 @@ class OrderFragment : Fragment() {
     var table = Table()
     var message = Message()
 
-     var wholeOrder = ""
-     var pricePerGuest = 0.0
-     var priceWholeTable = 0.0
 
     lateinit var database : DatabaseReference
 
       var dishesAdapter = DishesAdapter()
       var drinkAdapter = DrinkAdapter()
       var extraAdapter = ExtraAdapter()
+     var guestOrdersAdapter = GuestOrdersAdapter()
+
+    lateinit var orderRecyclerView : RecyclerView
 
     var tableNumber = ""
-
     var guests  = mutableListOf<Guest>()
 
     lateinit var binding: FragmentOrderBinding
@@ -60,6 +60,7 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
+
         super.onViewCreated(view, savedInstanceState)
         showMenue()
         tableNumber = requireArguments().getString("tableNumber").toString()
@@ -67,20 +68,20 @@ class OrderFragment : Fragment() {
 
         binding.buttonSendOrder.text = "send ordet for table $tableNumber"
 
-
-
-
-        binding.priceGuestTextview.text = "Guest 1 price is:   0.0"
-        binding.priceTableTextview.text = "Table " + tableNumber +  "price is: 0.0"
+        table.guests.add(guest)
+        showPrices()
 
         binding.buttonNext.setOnClickListener {
             var removeGuest = Guest()
 
-
             guests.add(guest)
+
+
             guest.guestnumber = (guests.size).toString()
             guest = removeGuest
+            table.guests.add(guest)
 
+            showPrices()
 
         }
 
@@ -88,13 +89,10 @@ class OrderFragment : Fragment() {
 
         binding.buttonSendOrder.setOnClickListener {
 
+            if (table.wholesum == 0.0){
+                message.sendMsg("There is no order", requireActivity())
 
-          if (priceWholeTable == 0.0){
-
-             message.sendMsg("There is no order", requireActivity())
-
-
-          }
+            }
 
             else{
 
@@ -107,8 +105,6 @@ class OrderFragment : Fragment() {
 
 
     fun showMenue() {
-
-
 
         var menuRecyclerView = binding.menuRecyclerView
         menuRecyclerView.layoutManager =
@@ -130,6 +126,10 @@ class OrderFragment : Fragment() {
         extraRecyclerView.adapter = extraAdapter
         extraAdapter.extras = model.extras
         extraAdapter.orderFragment = this
+
+        orderRecyclerView = binding.ordersRecyclerView
+        orderRecyclerView.layoutManager =  LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
+        orderRecyclerView.adapter = guestOrdersAdapter
 
     }
 
@@ -158,11 +158,31 @@ class OrderFragment : Fragment() {
 
 
 
-     fun showOrderPrice(){
-         binding.priceGuestTextview.text = guest.sum.toString()
-         binding.priceTableTextview.text = table.wholesum.toString()
-
+     fun countPrices(){
+         guest.fillWholeOrder()
+         table.fillTablePrice()
+         showPrices()
      }
+
+
+
+    fun showPrices(){
+
+        var guestNumber = guests.size + 1
+        var tableSum = table.wholesum.toString()
+        var guestSum = guest.sum.toString()
+
+        guestOrdersAdapter.orders = guest.orders
+        guestOrdersAdapter.notifyDataSetChanged()
+
+        binding.priceGuestTextview.text = "Guest "+ guestNumber.toString() + " Price is: "+ guestSum
+        binding.priceTableTextview.text = "Table " + tableNumber + "sum " +  tableSum
+
+        binding.guestNumberTextview.text = "Guest number "+ guestNumber +" Orders"
+
+
+    }
+
 
 
 

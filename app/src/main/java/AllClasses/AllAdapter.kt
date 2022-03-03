@@ -1,13 +1,10 @@
 package AllClasses
 
-import android.app.Activity
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import moussa.ellakki.OrderFragment
 import moussa.ellakki.R
@@ -31,27 +28,16 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
 
         holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
-
-           var order = Order(dishes[position].name!!, dishes[position].pris!!)
-
+         var order = Order(dishes[position].name!!, dishes[position].pris!!)
 
         holder.butonPlus.setOnClickListener{
-
              orderFragment.guest.orders.add(order)
-             orderFragment.guest.fillWholeOrder()
-            orderFragment.table.fillTablePrice(orderFragment.guest)
-            orderFragment.showOrderPrice()
-
-
+             orderFragment.countPrices()
         }
 
          holder.buttonMinus.setOnClickListener{
-
              orderFragment.guest.orders.remove(order)
-             orderFragment.guest.fillWholeOrder()
-             orderFragment.table.fillTablePrice(orderFragment.guest)
-             orderFragment.showOrderPrice()
-
+             orderFragment.countPrices()
          }
 
     }
@@ -100,14 +86,14 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
         holder.butonPlus.setOnClickListener{
 
             orderFragment.guest.orders.add(order)
-
+            orderFragment.countPrices()
 
         }
 
         holder.buttonMinus.setOnClickListener{
 
             orderFragment.guest.orders.remove(order)
-
+            orderFragment.countPrices()
 
         }
 
@@ -151,14 +137,14 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
         holder.butonPlus.setOnClickListener{
 
             orderFragment.guest.orders.add(order)
-
+            orderFragment.countPrices()
 
         }
 
         holder.buttonMinus.setOnClickListener{
 
             orderFragment.guest.orders.remove(order)
-
+            orderFragment.countPrices()
 
         }
 
@@ -187,7 +173,36 @@ class ExtraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
 
+class GuestOrdersAdapter : RecyclerView.Adapter<GuestOrderViewHolder>() {
 
+    var  orders = mutableListOf<Order>()
+
+
+    override fun getItemCount(): Int {
+        return orders.size
+    }
+
+    override fun onBindViewHolder(holder: GuestOrderViewHolder, position: Int) {
+
+        holder.orderText.text = orders[position].namn
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestOrderViewHolder {
+        val viewHolder = GuestOrderViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.view_for_guest_orders, parent, false)
+        )
+        return viewHolder
+    }
+}
+
+class  GuestOrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+
+  var orderText = view.findViewById<TextView>(R.id.order_textview)
+
+
+}
 
 
 

@@ -17,18 +17,23 @@ class Guest {
 
     var sum = 0.0
     var orders = mutableListOf<Order>()
-
+    var wholeOrder = ""
 
     fun fillWholeOrder(){
         this.sum = 0.0
+        this.wholeOrder = ""
         for(order in orders){
             this.sum += order.pris
+
+            this.wholeOrder += order.namn + " - "
         }
     }
 
     var guestnumber = ""
 
 }
+
+
 
 class Table {
 
@@ -41,9 +46,10 @@ class Table {
 
     fun fillTablePrice(){
 
+        this.wholesum = 0.0
      for ( guest in guests){
 
-        wholesum += guest.sum
+        this.wholesum += guest.sum
 
      }
 
