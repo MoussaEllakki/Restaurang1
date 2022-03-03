@@ -21,6 +21,13 @@ class ViewModelID : ViewModel() {
     var drinks = mutableListOf<Drink>()
     var extras = mutableListOf<Extra>()
 
+
+
+
+    val haveBroughtAllTables : MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+
     val isThereREstaurantID: MutableLiveData<IsRightRestaurantID> by lazy {
         MutableLiveData<IsRightRestaurantID>()
     }
@@ -32,7 +39,6 @@ class ViewModelID : ViewModel() {
     }
 
 
-
     fun controllid(restaurangID: String) {
 
         database.child("AllRestaurant").get().addOnSuccessListener {
@@ -40,9 +46,7 @@ class ViewModelID : ViewModel() {
             for (childsnap in it.children) {
 
                 val restaurantIdInFirebase = childsnap.getValue<String>()
-
                 if (restaurangID == restaurantIdInFirebase) {
-
                     isThereREstaurantID.value = IsRightRestaurantID.yes
                     return@addOnSuccessListener
                 }
@@ -50,7 +54,6 @@ class ViewModelID : ViewModel() {
             isThereREstaurantID.value = IsRightRestaurantID.no
         }
     }
-
 
     fun getAllTabel(restaurantId: String) {
 
@@ -63,17 +66,16 @@ class ViewModelID : ViewModel() {
                     val table = childsnap.getValue<Table>()
                     tables.add(table!!)
                 }
+
             }
     }
 
-
     fun getDishes(restaurantId: String) {
         dishes.clear()
-        database.child("Restaurant").child(restaurantId)
-            .child("Dishes").get().addOnSuccessListener {
+        database.child("Restaurant").child(restaurantId).child("Dishes").get()
+            .addOnSuccessListener {
 
                 for (childsnap in it.children) {
-
                     val dish = childsnap.getValue<Dish>()
                     dishes.add(dish!!)
                 }
@@ -90,7 +92,7 @@ class ViewModelID : ViewModel() {
                     drinks.add(drink!!)
                 }
             }
-    }
+       }
 
 
     fun getExtra(restaurantId: String) {
@@ -107,7 +109,8 @@ class ViewModelID : ViewModel() {
             }
     }
 
-    fun updateAllTabels(restaurantId: String , adapter: TableAdapter) {
+
+    fun updateAllTabels(restaurantId: String) {
 
         tables.clear()
         database.child("Restaurant").child(restaurantId)
@@ -118,13 +121,12 @@ class ViewModelID : ViewModel() {
                     tables.add(table!!)
                 }
 
-                // TODO() Fråga Bil
-                adapter.uppdateTableAdapter()
+                haveBroughtAllTables.value = true
             }
 
 
-
     }
+
 
 
 

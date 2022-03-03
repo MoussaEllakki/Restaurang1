@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="32dp"
             android:background="#BBB8B5"
             android:text="Enter"

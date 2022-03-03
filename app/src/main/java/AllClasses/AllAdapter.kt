@@ -19,10 +19,7 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
 
 
     var dishes = mutableListOf<Dish>()
-
-
     lateinit var orderFragment: OrderFragment
-
 
 
     override fun getItemCount(): Int {
@@ -41,17 +38,21 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         holder.butonPlus.setOnClickListener{
 
              orderFragment.guest.orders.add(order)
+             orderFragment.guest.fillWholeOrder()
+            orderFragment.table.fillTablePrice(orderFragment.guest)
+            orderFragment.showOrderPrice()
 
-          }
+
+        }
 
          holder.buttonMinus.setOnClickListener{
 
-            orderFragment.guest.orders.remove(order)
+             orderFragment.guest.orders.remove(order)
+             orderFragment.guest.fillWholeOrder()
+             orderFragment.table.fillTablePrice(orderFragment.guest)
+             orderFragment.showOrderPrice()
 
          }
-
-
-
 
     }
 
@@ -100,11 +101,13 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
             orderFragment.guest.orders.add(order)
 
+
         }
 
         holder.buttonMinus.setOnClickListener{
 
             orderFragment.guest.orders.remove(order)
+
 
         }
 
@@ -131,6 +134,7 @@ class DrinksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
     var extras = mutableListOf<Extra>()
+
     lateinit var orderFragment: OrderFragment
 
     override fun getItemCount(): Int {
@@ -141,17 +145,20 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
         holder.foodType.text = extras[position].name + " " +extras[position].pris.toString()
 
+
         var order = Order(extras[position].name!!, extras[position].pris!!)
 
         holder.butonPlus.setOnClickListener{
 
             orderFragment.guest.orders.add(order)
 
+
         }
 
         holder.buttonMinus.setOnClickListener{
 
             orderFragment.guest.orders.remove(order)
+
 
         }
 

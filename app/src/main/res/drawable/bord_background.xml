@@ -6,7 +6,7 @@
         android:color="#35E41B"/>
 
     <corners
-        android:radius="50dp"/>
+        android:radius="5dp"/>
 
 
 

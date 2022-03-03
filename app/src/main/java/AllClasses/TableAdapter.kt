@@ -27,7 +27,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
     var restaurant = Restaurant()
     var message = Message()
     lateinit var model: ViewModelID
-    lateinit var activity: Activity
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableViewHolder {
         val vh = TableViewHolder(
@@ -64,12 +64,10 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
                 restaurant.bookTable(position.toString(), model.restaurantID)
 
                 bundle.putString("tableNumber", numberToString)
-
-                model.updateAllTabels(model.restaurantID, this)
+                model.updateAllTabels(model.restaurantID)
 
                 holder.itemView.findNavController()
                     .navigate(R.id.action_tablesFragment_to_orderFragment, bundle)
-
             }
 
         } else {
@@ -93,7 +91,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
             restaurant.removeBooking(tableNumber, model.restaurantID)
 
-            model.updateAllTabels(model.restaurantID, this)
+            model.updateAllTabels(model.restaurantID)
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 
@@ -101,9 +99,6 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         builder.show()
     }
 
-    fun uppdateTableAdapter() {
-        this.notifyDataSetChanged()
-    }
 
 
 }

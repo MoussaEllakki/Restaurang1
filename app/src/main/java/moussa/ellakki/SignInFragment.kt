@@ -23,7 +23,6 @@ class SignInFragment : Fragment() {
 
     lateinit var binding: FragmentSignInBinding
 
-    //
     val model: ViewModelID by activityViewModels()
     var message = Message()
 

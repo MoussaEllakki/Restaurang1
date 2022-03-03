@@ -32,7 +32,6 @@ class Restaurant {
         database.child("Restaurant").child(restaurantId)
             .child("Bords").child(tableNumber).child("available").setValue(true)
 
-
         var guests = mutableListOf<Guest>()
         database.child("Restaurant").child(restaurantId).child("Bords")
             .child(tableNumber).child("Guests").setValue(guests)

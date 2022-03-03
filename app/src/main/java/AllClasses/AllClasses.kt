@@ -15,8 +15,16 @@ class Extra(var name : String? = "" , var pris : Double? = 0.0){
 
 class Guest {
 
-
+    var sum = 0.0
     var orders = mutableListOf<Order>()
+
+
+    fun fillWholeOrder(){
+        this.sum = 0.0
+        for(order in orders){
+            this.sum += order.pris
+        }
+    }
 
     var guestnumber = ""
 
@@ -31,14 +39,15 @@ class Table {
     var guests = mutableListOf<Guest>()
 
 
-    fun fillOrder (guest : Guest){
+    fun fillTablePrice(){
 
-      guests.add(guest)
+     for ( guest in guests){
+
+        wholesum += guest.sum
+
+     }
 
     }
-
-
-
 
 
 
