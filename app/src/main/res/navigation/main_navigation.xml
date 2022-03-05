@@ -36,5 +36,22 @@
         <action
             android:id="@+id/action_mainFragment_to_tablesFragment"
             app:destination="@id/tablesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_kitchenFragment"
+            app:destination="@id/kitchenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/kitchenFragment"
+        android:name="moussa.ellakki.KitchenFragment"
+        android:label="fragment_kitchen"
+        tools:layout="@layout/fragment_kitchen" >
+        <action
+            android:id="@+id/action_kitchenFragment_to_orderInformationFragment"
+            app:destination="@id/orderInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderInformationFragment"
+        android:name="moussa.ellakki.OrderInformationFragment"
+        android:label="fragment_order_information"
+        tools:layout="@layout/fragment_order_information" />
 </navigation>

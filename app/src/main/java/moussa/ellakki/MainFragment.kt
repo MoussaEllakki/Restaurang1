@@ -14,6 +14,7 @@ import moussa.ellakki.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     lateinit var binding: FragmentMainBinding
+    val model: ViewModelID by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +35,24 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         binding.buttonTakeOrder.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_tablesFragment)
 
         }
+
+
+        binding.goToKitchenButton.setOnClickListener{
+
+
+            view.findNavController().navigate(R.id.action_mainFragment_to_kitchenFragment)
+
+        }
+
+
+
+
     }
 
 

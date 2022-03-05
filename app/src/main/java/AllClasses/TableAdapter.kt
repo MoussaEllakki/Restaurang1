@@ -75,6 +75,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
             holder.table_image.setImageResource(R.drawable.tablered)
 
             holder.itemView.setOnClickListener {
+
                 sendMsg(message.tableBusy, holder.itemView.context, position.toString())
             }
 
@@ -89,7 +90,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
-            restaurant.removeBooking(tableNumber, model.restaurantID)
+            restaurant.removeBooking( tableNumber, model.restaurantID)
 
             model.updateAllTabels(model.restaurantID)
         }

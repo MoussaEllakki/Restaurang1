@@ -23,6 +23,9 @@ class ViewModelID : ViewModel() {
 
 
 
+    val haveBroughAllOrder : MutableLiveData<BroughtAllTablles> by lazy {
+        MutableLiveData<BroughtAllTablles>()
+    }
 
     val haveBroughtAllTables : MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
@@ -36,6 +39,8 @@ class ViewModelID : ViewModel() {
 
     init {
         database = Firebase.database.reference
+
+
     }
 
 
@@ -122,6 +127,7 @@ class ViewModelID : ViewModel() {
                 }
 
                 haveBroughtAllTables.value = true
+                haveBroughAllOrder.value =  BroughtAllTablles.yes
             }
 
 

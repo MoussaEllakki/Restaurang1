@@ -21,6 +21,7 @@ import moussa.ellakki.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
 
+
     lateinit var binding: FragmentSignInBinding
 
     val model: ViewModelID by activityViewModels()

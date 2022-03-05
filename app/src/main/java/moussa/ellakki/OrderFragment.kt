@@ -25,26 +25,24 @@ import com.google.firebase.ktx.Firebase
 import moussa.ellakki.databinding.FragmentOrderBinding
 
 
-
 class OrderFragment : Fragment() {
 
-    var guest =  Guest()
+    var guest = Guest()
     var restaurant = Restaurant()
     var table = Table()
     var message = Message()
 
 
-    lateinit var database : DatabaseReference
+    lateinit var database: DatabaseReference
+    var dishesAdapter = DishesAdapter()
+    var drinkAdapter = DrinkAdapter()
+    var extraAdapter = ExtraAdapter()
+    var guestOrdersAdapter = GuestOrdersAdapter()
 
-      var dishesAdapter = DishesAdapter()
-      var drinkAdapter = DrinkAdapter()
-      var extraAdapter = ExtraAdapter()
-     var guestOrdersAdapter = GuestOrdersAdapter()
-
-    lateinit var orderRecyclerView : RecyclerView
+    lateinit var orderRecyclerView: RecyclerView
 
     var tableNumber = ""
-    var guests  = mutableListOf<Guest>()
+    var guests = mutableListOf<Guest>()
 
     lateinit var binding: FragmentOrderBinding
     val model: ViewModelID by activityViewModels()
@@ -58,135 +56,115 @@ class OrderFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
-
         super.onViewCreated(view, savedInstanceState)
-        showMenue()
+
         tableNumber = requireArguments().getString("tableNumber").toString()
-
-
         binding.buttonSendOrder.text = "send ordet for table $tableNumber"
 
-        table.guests.add(guest)
+        showMenue()
         showPrices()
 
         binding.buttonNext.setOnClickListener {
-            var removeGuest = Guest()
 
-            guests.add(guest)
+            if (guest.sum == 0.0) {
 
+                message.sendMsg(
+                    "You havent taken order for guest " + (guests.size + 1).toString(),
+                    requireActivity()
+                )
+            } else {
 
-            guest.guestnumber = (guests.size).toString()
-            guest = removeGuest
-            table.guests.add(guest)
-
-            showPrices()
-
+                var removeGuest = Guest()
+                guests.add(guest)
+                guest.guestnumber = (guests.size).toString()
+                guest = removeGuest
+                table.guests.add(guest)
+                showPrices()
+            }
         }
 
 
-
         binding.buttonSendOrder.setOnClickListener {
-
-            if (table.wholesum == 0.0){
+            if (table.wholesum == 0.0) {
                 message.sendMsg("There is no order", requireActivity())
+            } else {
 
-            }
+                if (guest.sum == 0.0){
 
-            else{
+                    sendMsg2(message.UserDosentOrder, view)
+                }
+                else {
+                    guests.add(guest)
+                    sendMsg2(message.sendOrderConfimation,view)
+                }
 
-                sendMsg2("Are you sure you have taken whole order?", view)
             }
         }
     }
 
 
-
-
     fun showMenue() {
 
+        table.guests.add(guest)
+
         var menuRecyclerView = binding.menuRecyclerView
-        menuRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+        menuRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         menuRecyclerView.adapter = dishesAdapter
         dishesAdapter.dishes = model.dishes
-       dishesAdapter.orderFragment = this
+        dishesAdapter.orderFragment = this
 
         var drinkRecyclerView = binding.drinkRecyclerView
-        drinkRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+        drinkRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         drinkRecyclerView.adapter = drinkAdapter
         drinkAdapter.drinks = model.drinks
         drinkAdapter.orderFragment = this
 
         var extraRecyclerView = binding.extraRecyclerView
-        extraRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
+        extraRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
         extraRecyclerView.adapter = extraAdapter
         extraAdapter.extras = model.extras
         extraAdapter.orderFragment = this
 
         orderRecyclerView = binding.ordersRecyclerView
-        orderRecyclerView.layoutManager =  LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
+        orderRecyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         orderRecyclerView.adapter = guestOrdersAdapter
-
     }
 
 
-    fun sendMsg2(msg: String , view : View) {
+    fun countPrices() {
+        guest.fillWholeOrder()
+        table.fillTablePrice()
+        showPrices()
+    }
 
+    fun showPrices() {
+        var guestNumber = guests.size + 1
+        var tableSum = table.wholesum.toString()
+        var guestSum = guest.sum.toString()
+        guestOrdersAdapter.orders = guest.orders
+        guestOrdersAdapter.notifyDataSetChanged()
+        binding.priceGuestTextview.text  = "Guest " + guestNumber.toString() + " whole sum : " + guestSum
+        binding.priceTableTextview.text  = "Table " + tableNumber + " whole sum : " + tableSum
+        binding.guestNumberTextview.text = "Guest number " + guestNumber + " Orders"
+    }
+
+    fun sendMsg2(msg: String, view: View) {
         val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Message")
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
-            guests.add(guest)
-            guest.guestnumber = (guests.size ).toString()
+            table.filWholeOrder(guests)
+            guest.guestnumber = (guests.size).toString()
             var removeGuest = Guest()
             guest = removeGuest
-            restaurant.sendOrder(guests, tableNumber, model.restaurantID)
+
+            restaurant.sendOrder(table ,guests, tableNumber, model.restaurantID)
             view.findNavController().popBackStack()
-
-
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
-
         }
         builder.show()
     }
-
-
-
-     fun countPrices(){
-         guest.fillWholeOrder()
-         table.fillTablePrice()
-         showPrices()
-     }
-
-
-
-    fun showPrices(){
-
-        var guestNumber = guests.size + 1
-        var tableSum = table.wholesum.toString()
-        var guestSum = guest.sum.toString()
-
-        guestOrdersAdapter.orders = guest.orders
-        guestOrdersAdapter.notifyDataSetChanged()
-
-        binding.priceGuestTextview.text = "Guest "+ guestNumber.toString() + " Price is: "+ guestSum
-        binding.priceTableTextview.text = "Table " + tableNumber + "sum " +  tableSum
-
-        binding.guestNumberTextview.text = "Guest number "+ guestNumber +" Orders"
-
-
-    }
-
-
-
-
-
-
 
 }
