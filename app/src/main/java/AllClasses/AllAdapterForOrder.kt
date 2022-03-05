@@ -3,7 +3,6 @@ package AllClasses
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,20 +10,24 @@ import moussa.ellakki.R
 
 class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
 
+    var  orderAdapter = OrderADapter()
 
+  var guests = mutableListOf<Guest>()
 
- var adapterx = OrderADapter()
+      var table = Table()
 
     override fun getItemCount(): Int {
-        return 10
+        return guests.size
     }
 
     override fun onBindViewHolder(holder: KitchenViewHolder, position: Int) {
 
 
-        holder.rv.layoutManager = LinearLayoutManager(holder.itemView.context)
+        holder.recyclerView_for_orderDetalier.layoutManager = LinearLayoutManager(holder.itemView.context)
 
-        holder.rv.adapter = adapterx
+         holder.recyclerView_for_orderDetalier.adapter = orderAdapter
+        holder.textView_for_orderDetalier.text =  "xx"
+
 
 
     }
@@ -46,8 +49,8 @@ class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
 class   KitchenViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
- var rv = view.findViewById<RecyclerView>(R.id.RV)
-
+ var recyclerView_for_orderDetalier = view.findViewById<RecyclerView>(R.id.recyclerview_for_orderDetalier)
+ var textView_for_orderDetalier = view.findViewById<TextView>(R.id.textView_for_orderDetalier)
 
 }
 
@@ -57,13 +60,22 @@ class OrderADapter : RecyclerView.Adapter<OrderViewHolder>() {
 
 
     override fun getItemCount(): Int {
-        return 22
+        return 2
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
 
 
-        holder.order_text.text = "xxxxxxx"
+        holder.order_text.text = "Lax"
+
+
+        holder.itemView.setOnClickListener{
+
+
+         holder.order_text.text  = "finished"
+
+        }
+
 
     }
 

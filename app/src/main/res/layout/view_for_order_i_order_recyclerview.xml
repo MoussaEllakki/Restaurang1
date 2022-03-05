@@ -9,7 +9,8 @@
         android:id="@+id/order_textview_i_order_recyclerview"
         android:layout_width="88dp"
         android:layout_height="34dp"
-        android:background="#20CD3C"
+        android:layout_marginTop="16dp"
+        android:background="#EDA53B"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

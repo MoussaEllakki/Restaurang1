@@ -159,6 +159,7 @@ class OrderFragment : Fragment() {
             var removeGuest = Guest()
             guest = removeGuest
 
+
             restaurant.sendOrder(table ,guests, tableNumber, model.restaurantID)
             view.findNavController().popBackStack()
         }

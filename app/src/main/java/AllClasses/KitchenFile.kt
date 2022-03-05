@@ -1,5 +1,6 @@
 package AllClasses
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
     var  finishedOrder = mutableListOf<Table>()
 
 
+
     override fun getItemCount(): Int {
         return finishedOrder.size
     }
@@ -25,17 +27,10 @@ class FinishedAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
     override fun onBindViewHolder(holder: FinishedViewHolder, position: Int) {
 
 
-
         holder.table_number.text = finishedOrder[position].tableNumber
         holder.table_image.setImageResource(R.drawable.tablegreen)
 
-       holder.itemView.setOnClickListener{
 
-           holder.itemView.findNavController()
-               .navigate(R.id.action_kitchenFragment_to_orderInformationFragment)
-
-
-       }
 
 
     }
@@ -71,7 +66,7 @@ class DosentFinishedAdapter : RecyclerView.Adapter<DosentFinishedViewHolder>() {
 
 
     var  DosentfinishedOrder = mutableListOf<Table>()
-
+    var bundle = Bundle()
 
     override fun getItemCount(): Int {
         return DosentfinishedOrder.size
@@ -87,15 +82,15 @@ class DosentFinishedAdapter : RecyclerView.Adapter<DosentFinishedViewHolder>() {
 
         holder.itemView.setOnClickListener{
 
+
+
+            bundle.putString("tableNumber",  DosentfinishedOrder[position].tableNumber)
+
             holder.itemView.findNavController()
                 .navigate(R.id.action_kitchenFragment_to_orderInformationFragment)
 
 
         }
-
-
-
-
 
     }
 

@@ -19,6 +19,7 @@ class Restaurant {
         database = Firebase.database.reference
     }
 
+
     fun bookTable(tableNumber : String , restaurantId: String){
         database.child("Restaurant").child(restaurantId)
             .child("Bords").child(tableNumber).child("available").setValue(false)
@@ -62,6 +63,12 @@ class Restaurant {
 
         database.child("Restaurant").child(restaurantId).child("Bords")
             .child(tableNumberToString).child("Guests").setValue(guests)
+
+
+        database.child("Restaurant").child(restaurantId).child("Bords").child(tableNumberToString)
+        .child("orders").setValue(table.orders)
+
+
 
 
 

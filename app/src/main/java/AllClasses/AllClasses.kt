@@ -38,13 +38,12 @@ class Guest {
 class Table {
 
     var available = true
-    var Wholeorder = ""
     var wholesum = 0.0
     var tableNumber = ""
     var  orderFinished = false
     var haveOrder = false
     var guests = mutableListOf<Guest>()
-
+    var orders = mutableListOf<Order>()
 
 
     fun fillTablePrice(){
@@ -53,26 +52,33 @@ class Table {
      for ( guest in guests){
 
          this.wholesum += guest.sum
+
+
      }
 
     }
-    fun filWholeOrder (guest : List<Guest>){
+
+
+    fun filWholeOrder (guests : List<Guest>){
 
         for (guest in guests){
 
             for (guestOrder in guest.orders){
 
 
-                this.Wholeorder += guestOrder.namn + " "
+                this.orders.add(guestOrder)
+
             }
 
 
         }
     }
+
+
 }
 
 
-class Order(var namn : String , var pris : Double){
+class Order(var namn : String , var pris : Double , var finished : Boolean = false){
 
 
 }

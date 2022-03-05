@@ -88,6 +88,8 @@ class KitchenFragment : Fragment() {
 
     fun sortTables() {
 
+        finishedOrdersList.clear()
+        dosentFinsihedOdersList.clear()
         for (table in model.tables){
 
             if (table.haveOrder == true){
