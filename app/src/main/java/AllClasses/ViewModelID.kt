@@ -22,7 +22,7 @@ class ViewModelID : ViewModel() {
     var extras = mutableListOf<Extra>()
 
 
-
+      var restaurant = Restaurant()
 
 
     val haveBroughAllGuests : MutableLiveData<Boolean> by lazy {
@@ -46,13 +46,11 @@ class ViewModelID : ViewModel() {
 
     init {
         database = Firebase.database.reference
-
-
-
     }
 
 
     fun controllid(restaurangID: String) {
+
 
         database.child("AllRestaurant").get().addOnSuccessListener {
 
@@ -64,70 +62,18 @@ class ViewModelID : ViewModel() {
                     return@addOnSuccessListener
                 }
             }
+
             isThereREstaurantID.value = IsRightRestaurantID.no
         }
     }
 
-    fun getAllTabel(restaurantId: String) {
-
-        tables.clear()
-        database.child("Restaurant").child(restaurantId)
-            .child("Bords").get().addOnSuccessListener {
-
-                for (childsnap in it.children) {
-
-                    val table = childsnap.getValue<Table>()
-                    tables.add(table!!)
-                }
-
-            }
-    }
-
-    fun getDishes(restaurantId: String) {
-        dishes.clear()
-        database.child("Restaurant").child(restaurantId).child("Dishes").get()
-            .addOnSuccessListener {
-
-                for (childsnap in it.children) {
-                    val dish = childsnap.getValue<Dish>()
-                    dishes.add(dish!!)
-                }
-            }
-    }
-
-    fun getDirinks(restaurantId: String) {
-
-        drinks.clear()
-        database.child("Restaurant").child(restaurantId)
-            .child("Drinks").get().addOnSuccessListener {
-                for (childsnap in it.children) {
-                    val drink = childsnap.getValue<Drink>()
-                    drinks.add(drink!!)
-                }
-            }
-       }
-
-
-    fun getExtra(restaurantId: String) {
-
-        extras.clear()
-        database.child("Restaurant").child(restaurantId)
-            .child("Extras").get().addOnSuccessListener {
-
-                for (childsnap in it.children) {
-
-                    val extra = childsnap.getValue<Extra>()
-                    extras.add(extra!!)
-                }
-            }
-    }
 
 
     fun updateAllTabels(restaurantId: String) {
 
         tables.clear()
         database.child("Restaurant").child(restaurantId)
-            .child("Bords").get().addOnSuccessListener {
+            .child("tables").get().addOnSuccessListener {
 
                 for (childsnap in it.children) {
                     val table = childsnap.getValue<Table>()
@@ -139,6 +85,22 @@ class ViewModelID : ViewModel() {
             }
     }
 
+
+
+    fun getAllt(restaurantId: String){
+
+
+        database.child("Restaurant").child(restaurantId).get().addOnSuccessListener {
+
+           var  res = it.getValue<Restaurant>()!!
+
+            this.restaurant = res
+
+
+        }
+
+
+    }
 
 
 

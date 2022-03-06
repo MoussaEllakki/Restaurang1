@@ -35,7 +35,7 @@ class TablesFragment : Fragment() {
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.model = model
-        tableAdapter.tables = model.tables
+        tableAdapter.tables = model.restaurant.tables
 
         val haveBroughtAllt = Observer<Boolean> {
 

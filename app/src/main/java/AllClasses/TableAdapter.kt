@@ -1,9 +1,6 @@
 package moussa.ellakki
 
-import AllClasses.Message
-import AllClasses.Restaurant
-import AllClasses.Table
-import AllClasses.ViewModelID
+import AllClasses.*
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
@@ -24,7 +21,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
     var tables = mutableListOf<Table>()
     var bundle = Bundle()
-    var restaurant = Restaurant()
+    var sendToFirebase = SendToFirebase()
     var message = Message()
     lateinit var model: ViewModelID
 
@@ -61,7 +58,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
             holder.itemView.setOnClickListener {
 
-                restaurant.bookTable(position.toString(), model.restaurantID)
+             sendToFirebase.bookTable(position.toString(), model.restaurantID)
 
                 bundle.putString("tableNumber", numberToString)
                 model.updateAllTabels(model.restaurantID)
@@ -90,7 +87,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
-            restaurant.removeBooking( tableNumber, model.restaurantID)
+            sendToFirebase.removeBooking( tableNumber, model.restaurantID)
 
             model.updateAllTabels(model.restaurantID)
         }

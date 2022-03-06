@@ -43,14 +43,12 @@ class MainFragment : Fragment() {
         }
 
 
-        binding.goToKitchenButton.setOnClickListener{
+        binding.goToKitchenButton.setOnClickListener {
 
 
             view.findNavController().navigate(R.id.action_mainFragment_to_kitchenFragment)
 
         }
-
-
 
 
     }

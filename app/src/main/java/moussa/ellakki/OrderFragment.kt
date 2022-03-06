@@ -28,7 +28,8 @@ import moussa.ellakki.databinding.FragmentOrderBinding
 class OrderFragment : Fragment() {
 
     var guest = Guest()
-    var restaurant = Restaurant()
+
+    var sendToFirebase = SendToFirebase()
     var table = Table()
     var message = Message()
 
@@ -110,19 +111,19 @@ class OrderFragment : Fragment() {
         var menuRecyclerView = binding.menuRecyclerView
         menuRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         menuRecyclerView.adapter = dishesAdapter
-        dishesAdapter.dishes = model.dishes
+        dishesAdapter.dishes = model.restaurant.dishes
         dishesAdapter.orderFragment = this
 
         var drinkRecyclerView = binding.drinkRecyclerView
         drinkRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
         drinkRecyclerView.adapter = drinkAdapter
-        drinkAdapter.drinks = model.drinks
+        drinkAdapter.drinks = model.restaurant.drinks
         drinkAdapter.orderFragment = this
 
         var extraRecyclerView = binding.extraRecyclerView
         extraRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
         extraRecyclerView.adapter = extraAdapter
-        extraAdapter.extras = model.extras
+        extraAdapter.extras = model.restaurant.extras
         extraAdapter.orderFragment = this
 
         orderRecyclerView = binding.ordersRecyclerView
@@ -143,6 +144,7 @@ class OrderFragment : Fragment() {
         var guestSum = guest.sum.toString()
         guestOrdersAdapter.orders = guest.orders
         guestOrdersAdapter.notifyDataSetChanged()
+
         binding.priceGuestTextview.text  = "Guest " + guestNumber.toString() + " whole sum : " + guestSum
         binding.priceTableTextview.text  = "Table " + tableNumber + " whole sum : " + tableSum
         binding.guestNumberTextview.text = "Guest number " + guestNumber + " Orders"
@@ -159,8 +161,9 @@ class OrderFragment : Fragment() {
             var removeGuest = Guest()
             guest = removeGuest
 
+            table.guests = guests
 
-            restaurant.sendOrder(table ,guests, tableNumber, model.restaurantID)
+            sendToFirebase.sendOrder(table , tableNumber, model.restaurantID)
             view.findNavController().popBackStack()
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->

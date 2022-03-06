@@ -25,10 +25,11 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
 
     override fun onBindViewHolder(holder: DishesViewHolder, position: Int) {
 
-
         holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
-         var order = Order(dishes[position].name!!, dishes[position].pris!!)
+         var order = Order()
+        order.namn = dishes[position].name!!
+        order.pris = dishes[position].pris!!
 
         holder.butonPlus.setOnClickListener{
              orderFragment.guest.orders.add(order)
@@ -81,7 +82,10 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
         holder.foodType.text = drinks[position].name + " " + drinks[position].pris.toString()
 
-        var order = Order(drinks[position].name!!, drinks[position].pris!!)
+
+        var order = Order()
+        order.namn = drinks[position].name!!
+        order.pris = drinks[position].pris!!
 
         holder.butonPlus.setOnClickListener{
 
@@ -132,7 +136,9 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
         holder.foodType.text = extras[position].name + " " +extras[position].pris.toString()
 
 
-        var order = Order(extras[position].name!!, extras[position].pris!!)
+        var order = Order()
+        order.namn = extras[position].name!!
+        order.pris = extras[position].pris!!
 
         holder.butonPlus.setOnClickListener{
 

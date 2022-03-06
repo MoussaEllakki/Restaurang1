@@ -21,9 +21,7 @@ import moussa.ellakki.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
 
-
     lateinit var binding: FragmentSignInBinding
-
     val model: ViewModelID by activityViewModels()
     var message = Message()
 
@@ -35,7 +33,6 @@ class SignInFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,12 +41,7 @@ class SignInFragment : Fragment() {
         val isThereRestaurantIDObserver = Observer<IsRightRestaurantID> {
 
             if (it == IsRightRestaurantID.yes) {
-
-                model.getAllTabel(model.restaurantID)
-                model.getDishes(model.restaurantID)
-                model.getDirinks(model.restaurantID)
-                model.getExtra(model.restaurantID)
-
+                model.getAllt(model.restaurantID)
                 view.findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
 
             } else if (it == IsRightRestaurantID.no) {
@@ -60,21 +52,17 @@ class SignInFragment : Fragment() {
 
         model.isThereREstaurantID.observe(viewLifecycleOwner, isThereRestaurantIDObserver)
 
-        binding.buttonEnter.setOnClickListener {
+         binding.buttonEnter.setOnClickListener {
 
             val restaurangId = binding.restaurantIDEditText.text.toString()
 
-            if (restaurangId.isEmpty()) {
+             if (restaurangId.isEmpty()) {
                 message.sendMsg("Type Restaurang ID First", requireActivity())
                 return@setOnClickListener
-            }
-
-            model.restaurantID = restaurangId
-            model.controllid(restaurangId)
+             }
+             model.restaurantID = restaurangId
+             model.controllid(restaurangId)
         }
-
-
     }
-
 
 }
