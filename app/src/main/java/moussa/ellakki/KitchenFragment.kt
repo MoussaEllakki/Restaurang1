@@ -19,12 +19,8 @@ class KitchenFragment : Fragment() {
     lateinit var binding: FragmentKitchenBinding
     val model: ViewModelID by activityViewModels()
 
-
     var dosentFinsihedOdersList = mutableListOf<Table>()
-
     var  finishedOrdersList = mutableListOf<Table>()
-
-
     val finishedAdapter = FinishedAdapter()
     val dosentFinishedAdapter = DosentFinishedAdapter()
 
@@ -52,37 +48,23 @@ class KitchenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-          model.updateAllTabels(model.restaurantID)
-
-        val finishedRecyclerView  = binding.finishedRecyclerView
-        finishedRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        finishedRecyclerView.adapter = finishedAdapter
+        model.listenToTables()
 
 
-       val dosentFinishedRecyclerView = binding.dosentFinishedRecyclerView
-        dosentFinishedRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        dosentFinishedRecyclerView.adapter = dosentFinishedAdapter
 
 
-        val haveBroughAllOrder = Observer<BroughtAllTablles> {
+        val haveBroughAllOrder = Observer<IsThereChanges> {
 
-            if (it == BroughtAllTablles.yes) {
+            if (it == IsThereChanges.yes) {
 
+                openView()
                 sortTables()
-                finishedAdapter.finishedOrder = finishedOrdersList
-                dosentFinishedAdapter.DosentfinishedOrder = dosentFinsihedOdersList
-                finishedAdapter.notifyDataSetChanged()
-                dosentFinishedAdapter.notifyDataSetChanged()
 
-                model.haveBroughAllOrder.value = BroughtAllTablles.no
 
             }
-
         }
-        model.haveBroughAllOrder.observe(viewLifecycleOwner, haveBroughAllOrder)
+        model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
     }
-
-
 
 
 
@@ -110,7 +92,23 @@ class KitchenFragment : Fragment() {
 
         }
 
+        finishedAdapter.finishedOrder = finishedOrdersList
+        dosentFinishedAdapter.DosentfinishedOrder = dosentFinsihedOdersList
+        finishedAdapter.notifyDataSetChanged()
+        dosentFinishedAdapter.notifyDataSetChanged()
+       model.isThereChanges.value = IsThereChanges.no
 
     }
+
+
+    fun openView(){
+        val finishedRecyclerView  = binding.finishedRecyclerView
+        finishedRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        finishedRecyclerView.adapter = finishedAdapter
+        val dosentFinishedRecyclerView = binding.dosentFinishedRecyclerView
+        dosentFinishedRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        dosentFinishedRecyclerView.adapter = dosentFinishedAdapter
+    }
+
 
 }

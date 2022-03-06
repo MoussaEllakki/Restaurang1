@@ -28,13 +28,10 @@ import moussa.ellakki.databinding.FragmentOrderBinding
 class OrderFragment : Fragment() {
 
     var guest = Guest()
-
     var sendToFirebase = SendToFirebase()
     var table = Table()
     var message = Message()
 
-
-    lateinit var database: DatabaseReference
     var dishesAdapter = DishesAdapter()
     var drinkAdapter = DrinkAdapter()
     var extraAdapter = ExtraAdapter()

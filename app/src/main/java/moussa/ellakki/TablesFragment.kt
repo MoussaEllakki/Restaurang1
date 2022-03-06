@@ -31,24 +31,27 @@ class TablesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+          openView()
+
+        val haveBroughtAllt = Observer<Boolean> {
+            if (it == true) {
+                tableAdapter.tables = model.tables
+                tableAdapter.notifyDataSetChanged()
+            }
+        }
+        model.haveBroughtAllTables.observe(viewLifecycleOwner, haveBroughtAllt)
+    }
+
+
+
+    fun openView(){
+
         var tableRecyclerView = binding.recyclerViewForTables
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.model = model
         tableAdapter.tables = model.restaurant.tables
 
-        val haveBroughtAllt = Observer<Boolean> {
-
-            if (it == true) {
-
-                tableAdapter.tables = model.tables
-                tableAdapter.notifyDataSetChanged()
-            }
-
-        }
-
-
-        model.haveBroughtAllTables.observe(viewLifecycleOwner, haveBroughtAllt)
-
     }
+
 }

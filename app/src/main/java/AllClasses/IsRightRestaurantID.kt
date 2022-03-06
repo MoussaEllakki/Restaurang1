@@ -7,7 +7,7 @@ enum class IsRightRestaurantID {
 }
 
 
-enum class BroughtAllTablles{
+enum class IsThereChanges{
 
     maybe, yes, no
 

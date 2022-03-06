@@ -17,21 +17,17 @@ class ViewModelID : ViewModel() {
     lateinit var database: DatabaseReference
 
     var tables = mutableListOf<Table>()
-    var dishes = mutableListOf<Dish>()
-    var drinks = mutableListOf<Drink>()
-    var extras = mutableListOf<Extra>()
 
 
-      var restaurant = Restaurant()
-
+    var restaurant = Restaurant()
 
     val haveBroughAllGuests : MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
 
 
-    val haveBroughAllOrder : MutableLiveData<BroughtAllTablles> by lazy {
-        MutableLiveData<BroughtAllTablles>()
+    val isThereChanges : MutableLiveData<IsThereChanges> by lazy {
+        MutableLiveData<IsThereChanges>()
     }
 
     val haveBroughtAllTables : MutableLiveData<Boolean> by lazy {
@@ -41,6 +37,7 @@ class ViewModelID : ViewModel() {
     val isThereREstaurantID: MutableLiveData<IsRightRestaurantID> by lazy {
         MutableLiveData<IsRightRestaurantID>()
     }
+
 
     var restaurantID = ""
 
@@ -81,7 +78,7 @@ class ViewModelID : ViewModel() {
                 }
 
                 haveBroughtAllTables.value = true
-                haveBroughAllOrder.value =  BroughtAllTablles.yes
+
             }
     }
 
@@ -101,6 +98,37 @@ class ViewModelID : ViewModel() {
 
 
     }
+
+
+    fun listenToTables(){
+
+
+        database.child("Restaurant").child(this.restaurantID)
+            .child("tables").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    tables.clear()
+                    for (table in dataSnapshot.children) {
+
+                        var table2 = table.getValue<Table>()
+                        tables.add(table2!!)
+
+
+                    }
+
+                   isThereChanges.value = IsThereChanges.yes
+                }
+
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+
+
+    }
+
 
 
 
