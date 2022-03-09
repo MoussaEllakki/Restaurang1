@@ -58,7 +58,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
             holder.itemView.setOnClickListener {
 
-             sendToFirebase.bookTable(position.toString(), model.restaurantID)
+
 
                 bundle.putString("tableNumber", numberToString)
                 model.updateAllTabels(model.restaurantID)

@@ -31,12 +31,12 @@ class TablesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-          openView()
+            model.updateAllTabels(model.restaurantID)
 
         val haveBroughtAllt = Observer<Boolean> {
             if (it == true) {
-                tableAdapter.tables = model.tables
-                tableAdapter.notifyDataSetChanged()
+                openView()
+
             }
         }
         model.haveBroughtAllTables.observe(viewLifecycleOwner, haveBroughtAllt)
@@ -51,6 +51,8 @@ class TablesFragment : Fragment() {
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.model = model
         tableAdapter.tables = model.restaurant.tables
+        tableAdapter.tables = model.tables
+        tableAdapter.notifyDataSetChanged()
 
     }
 

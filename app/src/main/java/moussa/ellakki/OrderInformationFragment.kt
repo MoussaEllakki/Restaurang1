@@ -1,27 +1,29 @@
 package moussa.ellakki
 
-import AllClasses.*
+import AllClasses.DosentFinishedAdapter
+import AllClasses.KitchenAdapter
+import AllClasses.Table
+import AllClasses.ViewModelID
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import moussa.ellakki.databinding.FragmentOrderInformationBinding
-import moussa.ellakki.databinding.FragmentSignInBinding
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class OrderInformationFragment : Fragment() {
 
-    lateinit var binding: FragmentOrderInformationBinding
 
-     var kitchenAdapter = KitchenAdapter()
+    var kitchenAdapter = KitchenAdapter()
+
+
 
     val model: ViewModelID by activityViewModels()
 
-    var tableNumber = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,39 +36,29 @@ class OrderInformationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentOrderInformationBinding.inflate(inflater, container, false)
-
-      return binding.root
-
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_order_information, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // tableNumber = requireArguments().getString("tableNumber").toString()
-       // var tableNumberToInt = tableNumber.toInt() - 1
-      // var tableNumberToString =  tableNumberToInt.toString()
-
-        model.haveBroughAllGuests.value = false
-
-
-        val bringGuests = Observer<Boolean> {
-
-            if (it == true){
-
-                oppenView()
-
-            }
 
 
 
-        }
 
 
-        model.haveBroughAllGuests.observe(viewLifecycleOwner, bringGuests)
+        var recyclerViewOrderFragment = view.findViewById<RecyclerView>(R.id.RV_i_orderinformationFragment)
 
+        recyclerViewOrderFragment.layoutManager = GridLayoutManager(requireActivity(), 3)
+
+        recyclerViewOrderFragment.adapter = kitchenAdapter
+
+
+
+
+        kitchenAdapter.test = model.test
 
 
 
@@ -75,15 +67,7 @@ class OrderInformationFragment : Fragment() {
 
 
 
-    fun oppenView(){
 
-        var kitchen_recyclerView = binding.allOrderrecyclerView
-        kitchen_recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true)
-
-        kitchen_recyclerView.adapter = kitchenAdapter
-
-
-    }
 
 
 

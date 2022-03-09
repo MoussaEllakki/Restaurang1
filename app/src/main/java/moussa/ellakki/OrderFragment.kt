@@ -40,7 +40,7 @@ class OrderFragment : Fragment() {
     lateinit var orderRecyclerView: RecyclerView
 
     var tableNumber = ""
-    var guests = mutableListOf<Guest>()
+
 
     lateinit var binding: FragmentOrderBinding
     val model: ViewModelID by activityViewModels()
@@ -55,9 +55,9 @@ class OrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         tableNumber = requireArguments().getString("tableNumber").toString()
         binding.buttonSendOrder.text = "send ordet for table $tableNumber"
+
 
         showMenue()
         showPrices()
@@ -67,14 +67,13 @@ class OrderFragment : Fragment() {
             if (guest.sum == 0.0) {
 
                 message.sendMsg(
-                    "You havent taken order for guest " + (guests.size + 1).toString(),
+                    "You havent taken order for guest " + (table.guests.size).toString(),
                     requireActivity()
                 )
             } else {
 
                 var removeGuest = Guest()
-                guests.add(guest)
-                guest.guestnumber = (guests.size).toString()
+                guest.guestnumber = (table.guests.size).toString()
                 guest = removeGuest
                 table.guests.add(guest)
                 showPrices()
@@ -83,16 +82,18 @@ class OrderFragment : Fragment() {
 
 
         binding.buttonSendOrder.setOnClickListener {
+
             if (table.wholesum == 0.0) {
                 message.sendMsg("There is no order", requireActivity())
-            } else {
+            }
+            else {
 
                 if (guest.sum == 0.0){
 
                     sendMsg2(message.UserDosentOrder, view)
                 }
                 else {
-                    guests.add(guest)
+
                     sendMsg2(message.sendOrderConfimation,view)
                 }
 
@@ -103,7 +104,7 @@ class OrderFragment : Fragment() {
 
     fun showMenue() {
 
-        table.guests.add(guest)
+       table.guests.add(guest)
 
         var menuRecyclerView = binding.menuRecyclerView
         menuRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
@@ -130,21 +131,20 @@ class OrderFragment : Fragment() {
 
 
     fun countPrices() {
-        guest.fillWholeOrder()
-        table.fillTablePrice()
+        guest.filOleOrder()
+        table.countTableSum()
         showPrices()
     }
 
     fun showPrices() {
-        var guestNumber = guests.size + 1
+
+        var guestNumber = table.guests.size
         var tableSum = table.wholesum.toString()
         var guestSum = guest.sum.toString()
         guestOrdersAdapter.orders = guest.orders
         guestOrdersAdapter.notifyDataSetChanged()
-
-        binding.priceGuestTextview.text  = "Guest " + guestNumber.toString() + " whole sum : " + guestSum
-        binding.priceTableTextview.text  = "Table " + tableNumber + " whole sum : " + tableSum
-        binding.guestNumberTextview.text = "Guest number " + guestNumber + " Orders"
+        binding.priceTableTextview.text  = "Total : " + tableSum
+        binding.guestNumberTextview.text = "Guest " + guestNumber + " sum   "+ guestSum
     }
 
     fun sendMsg2(msg: String, view: View) {
@@ -153,12 +153,15 @@ class OrderFragment : Fragment() {
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
-            table.filWholeOrder(guests)
-            guest.guestnumber = (guests.size).toString()
+
+            table.filWholeOrder()
+            guest.guestnumber = (table.guests.size).toString()
             var removeGuest = Guest()
             guest = removeGuest
+             table.available = false
+             table.haveOrder = true
+             table.tableNumber = tableNumber
 
-            table.guests = guests
 
             sendToFirebase.sendOrder(table , tableNumber, model.restaurantID)
             view.findNavController().popBackStack()

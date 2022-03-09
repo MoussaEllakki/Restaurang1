@@ -21,7 +21,8 @@ class KitchenFragment : Fragment() {
 
     var dosentFinsihedOdersList = mutableListOf<Table>()
     var  finishedOrdersList = mutableListOf<Table>()
-    val finishedAdapter = FinishedAdapter()
+
+    val finishedAdapter = FinishedOrderAdapter()
     val dosentFinishedAdapter = DosentFinishedAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {

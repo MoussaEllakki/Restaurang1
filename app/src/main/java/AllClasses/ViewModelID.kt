@@ -15,16 +15,11 @@ import moussa.ellakki.TableAdapter
 class ViewModelID : ViewModel() {
 
     lateinit var database: DatabaseReference
-
     var tables = mutableListOf<Table>()
-
-
     var restaurant = Restaurant()
 
-    val haveBroughAllGuests : MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
 
+      var tableInOrder = Table()
 
     val isThereChanges : MutableLiveData<IsThereChanges> by lazy {
         MutableLiveData<IsThereChanges>()
@@ -39,6 +34,8 @@ class ViewModelID : ViewModel() {
     }
 
 
+    var test = "innan"
+
     var restaurantID = ""
 
     init {
@@ -47,7 +44,6 @@ class ViewModelID : ViewModel() {
 
 
     fun controllid(restaurangID: String) {
-
 
         database.child("AllRestaurant").get().addOnSuccessListener {
 
@@ -76,9 +72,7 @@ class ViewModelID : ViewModel() {
                     val table = childsnap.getValue<Table>()
                     tables.add(table!!)
                 }
-
                 haveBroughtAllTables.value = true
-
             }
     }
 
@@ -86,22 +80,15 @@ class ViewModelID : ViewModel() {
 
     fun getAllt(restaurantId: String){
 
-
         database.child("Restaurant").child(restaurantId).get().addOnSuccessListener {
 
            var  res = it.getValue<Restaurant>()!!
-
             this.restaurant = res
-
-
         }
-
-
     }
 
 
     fun listenToTables(){
-
 
         database.child("Restaurant").child(this.restaurantID)
             .child("tables").addValueEventListener(object : ValueEventListener {
@@ -112,22 +99,16 @@ class ViewModelID : ViewModel() {
 
                         var table2 = table.getValue<Table>()
                         tables.add(table2!!)
-
-
                     }
-
-                   isThereChanges.value = IsThereChanges.yes
+                    isThereChanges.value = IsThereChanges.yes
                 }
-
 
                 override fun onCancelled(error: DatabaseError) {
 
                 }
-
             })
-
-
     }
+
 
 
 

@@ -28,16 +28,17 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
          var order = Order()
-        order.namn = dishes[position].name!!
+        order.name = dishes[position].name!!
         order.pris = dishes[position].pris!!
 
         holder.butonPlus.setOnClickListener{
-             orderFragment.guest.orders.add(order)
+            orderFragment.guest.orders.add(order)
              orderFragment.countPrices()
         }
 
          holder.buttonMinus.setOnClickListener{
-             orderFragment.guest.orders.remove(order)
+
+            orderFragment.guest.orders.remove(order)
              orderFragment.countPrices()
          }
 
@@ -84,7 +85,7 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
 
 
         var order = Order()
-        order.namn = drinks[position].name!!
+        order.name = drinks[position].name!!
         order.pris = drinks[position].pris!!
 
         holder.butonPlus.setOnClickListener{
@@ -137,7 +138,7 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
 
         var order = Order()
-        order.namn = extras[position].name!!
+        order.name = extras[position].name!!
         order.pris = extras[position].pris!!
 
         holder.butonPlus.setOnClickListener{
@@ -148,6 +149,7 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
         }
 
         holder.buttonMinus.setOnClickListener{
+
 
             orderFragment.guest.orders.remove(order)
             orderFragment.countPrices()
@@ -167,11 +169,9 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
 
 class ExtraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-  //  var foodprice = view.findViewById<TextView>(R.id.food_price_textview)
     var foodType = view.findViewById<Button>(R.id.food_button)
     var butonPlus = view.findViewById<Button>(R.id.button_plus)
     var buttonMinus = view.findViewById<Button>(R.id.button_minus)
-
 
 
 }
@@ -190,13 +190,13 @@ class GuestOrdersAdapter : RecyclerView.Adapter<GuestOrderViewHolder>() {
 
     override fun onBindViewHolder(holder: GuestOrderViewHolder, position: Int) {
 
-        holder.orderText.text = orders[position].namn
+        holder.orderText.text = orders[position].name
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestOrderViewHolder {
         val viewHolder = GuestOrderViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.view_for_guest_orders, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.view_for_orders_in_kitchen, parent, false)
         )
         return viewHolder
     }

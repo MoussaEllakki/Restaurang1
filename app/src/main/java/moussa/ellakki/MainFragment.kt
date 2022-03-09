@@ -14,7 +14,7 @@ import moussa.ellakki.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     lateinit var binding: FragmentMainBinding
-    val model: ViewModelID by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

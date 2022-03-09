@@ -1,15 +1,24 @@
 package AllClasses
 
-class Dish (var name : String? = "" , var pris : Double? = 0.0) {
+
+
+open class Order(){
+    var name = ""
+    var pris = 0.0
+    var finished = false
 
 }
 
-class Drink (var name : String? = "" , var pris : Double? = 0.0){
+class Dish () : Order() {
+
+}
+
+class Drink: Order (){
 
 
 }
 
-class Extra(var name : String? = "" , var pris : Double? = 0.0){
+class Extra(): Order(){
 
 }
 
@@ -17,17 +26,20 @@ class Guest {
 
     var sum = 0.0
     var orders = mutableListOf<Order>()
+    var guestnumber = ""
 
+    fun filOleOrder(){
 
-    fun fillWholeOrder(){
         this.sum = 0.0
+       for (order in orders){
 
-        for(order in orders){
-            this.sum += order.pris
-        }
+         this.sum += order.pris
+       }
+
     }
 
-    var guestnumber = ""
+
+
 
 }
 
@@ -44,23 +56,22 @@ class Table {
     var tableorders = mutableListOf<Order>()
 
 
-    fun fillTablePrice(){
 
-        this.wholesum = 0.0
-     for ( guest in guests){
+    fun countTableSum(){
+       this.wholesum = 0.0
+        for (guest in guests){
 
          this.wholesum += guest.sum
-     }
+
+        }
 
     }
 
+    fun filWholeOrder (){
 
-    fun filWholeOrder (guests : List<Guest>){
-
-        for (guest in guests){
+        for (guest in this.guests){
 
             for (guestOrder in guest.orders){
-
 
                 this.tableorders.add(guestOrder)
 
@@ -74,13 +85,6 @@ class Table {
 }
 
 
-class Order(){
-
-    var namn = ""
-     var pris = 0.0
-     var finished = false
-
-}
 
 class Restaurant{
 
