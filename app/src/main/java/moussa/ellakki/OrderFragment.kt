@@ -144,7 +144,7 @@ class OrderFragment : Fragment() {
         guestOrdersAdapter.orders = guest.orders
         guestOrdersAdapter.notifyDataSetChanged()
         binding.priceTableTextview.text  = "Total : " + tableSum
-        binding.guestNumberTextview.text = "Guest " + guestNumber + " sum   "+ guestSum
+        binding.guestNumberTextview.text = "Guest " + guestNumber + " orders.                Sum :" + guestSum
     }
 
     fun sendMsg2(msg: String, view: View) {
