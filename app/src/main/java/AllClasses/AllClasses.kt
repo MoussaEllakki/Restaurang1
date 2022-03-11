@@ -1,5 +1,7 @@
 package AllClasses
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 
 open class Order(){
@@ -39,13 +41,11 @@ class Guest {
     }
 
 
-
-
 }
 
 
-
-class Table {
+@Parcelize
+class Table : Parcelable {
 
     var available = true
     var wholesum = 0.0

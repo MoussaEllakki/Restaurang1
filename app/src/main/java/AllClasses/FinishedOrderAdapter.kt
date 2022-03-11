@@ -28,9 +28,8 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
         override fun onBindViewHolder(holder: FinishedViewHolder, position: Int) {
 
 
-            holder.table_number.text = finishedOrder[position].tableNumber
-            holder.table_image.setImageResource(R.drawable.tablegreen)
 
+       holder.tableView.text = finishedOrder[position].tableNumber
 
 
 
@@ -42,7 +41,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedViewHolder {
 
             val viewHolder = FinishedViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.table_layout , parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_kitchen , parent, false)
             )
             return viewHolder
         }
@@ -53,11 +52,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
     class  FinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-
-        val table_number = view.findViewById<TextView>(R.id.table_number_textview)
-        val table_image = view.findViewById<ImageView>(R.id.table_image)
-
-
+        val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
 
 
     }
@@ -68,8 +63,6 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
         var  DosentfinishedOrder = mutableListOf<Table>()
 
-        var model = ViewModelID()
-
         lateinit  var orderInformationFragment : OrderInformationFragment
 
         override fun getItemCount(): Int {
@@ -78,52 +71,36 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
         override fun onBindViewHolder(holder: DosentFinishedViewHolder, position: Int) {
 
-
-
-            holder.table_number.text = DosentfinishedOrder[position].tableNumber
-            holder.table_image.setImageResource(R.drawable.tablegreen)
-
+            holder.tableView.text = DosentfinishedOrder[position].tableNumber
 
             holder.itemView.setOnClickListener{
 
 
 
-
-             model.test = "ändrat"
-
-
+                var bundle = Bundle()
+                bundle.putParcelable("table", DosentfinishedOrder[position])
 
                 holder.itemView.findNavController()
-                    .navigate(R.id.action_kitchenFragment_to_orderInformationFragment)
+                    .navigate(R.id.action_kitchenFragment_to_orderInformationFragment, bundle)
 
-
-               }
-
+            }
         }
-
-
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DosentFinishedViewHolder {
 
             val viewHolder = DosentFinishedViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.table_layout , parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_kitchen , parent, false)
             )
             return viewHolder
         }
-
-
-
-
-
     }
 
 
 
     class  DosentFinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-
-        val table_number = view.findViewById<TextView>(R.id.table_number_textview)
-        val table_image = view.findViewById<ImageView>(R.id.table_image)
+        val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
+       // val table_image = view.findViewById<ImageView>(R.id.table_image)
 
     }
 

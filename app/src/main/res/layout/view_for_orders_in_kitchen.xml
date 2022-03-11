@@ -9,11 +9,24 @@
     <TextView
         android:id="@+id/order_textview"
         android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:background="#2CEA40"
+        android:layout_height="25dp"
+        android:background="#0FDC2B"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="16dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/deleteOrder_textview"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:background="#ED083A"
+        android:text="Delete"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

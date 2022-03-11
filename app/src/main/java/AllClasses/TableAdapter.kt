@@ -58,10 +58,8 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
             holder.itemView.setOnClickListener {
 
-
-
                 bundle.putString("tableNumber", numberToString)
-                model.updateAllTabels(model.restaurantID)
+
 
                 holder.itemView.findNavController()
                     .navigate(R.id.action_tablesFragment_to_orderFragment, bundle)
@@ -89,7 +87,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
             sendToFirebase.removeBooking( tableNumber, model.restaurantID)
 
-            model.updateAllTabels(model.restaurantID)
+
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 

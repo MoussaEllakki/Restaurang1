@@ -31,7 +31,9 @@
         <entry key="app/src/main/res/layout/view_for_guest_orders.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/view_for_menu.xml" value="0.335" />
         <entry key="app/src/main/res/layout/view_for_order_i_order_recyclerview.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/view_for_order_i_orderinformation_fragment.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/view_for_orders_in_kitchen.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/layout/view_for_table_i_kitchen.xml" value="0.125" />
         <entry key="app/src/main/res/layout/xxx.xml" value="0.26875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1335" />
       </map>

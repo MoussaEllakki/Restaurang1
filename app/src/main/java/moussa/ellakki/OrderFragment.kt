@@ -56,8 +56,6 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tableNumber = requireArguments().getString("tableNumber").toString()
-        binding.buttonSendOrder.text = "send ordet for table $tableNumber"
-
 
         showMenue()
         showPrices()
@@ -127,6 +125,7 @@ class OrderFragment : Fragment() {
         orderRecyclerView = binding.ordersRecyclerView
         orderRecyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         orderRecyclerView.adapter = guestOrdersAdapter
+        guestOrdersAdapter.orderFragment = this
     }
 
 
@@ -144,7 +143,7 @@ class OrderFragment : Fragment() {
         guestOrdersAdapter.orders = guest.orders
         guestOrdersAdapter.notifyDataSetChanged()
         binding.priceTableTextview.text  = "Total : " + tableSum
-        binding.guestNumberTextview.text = "Guest " + guestNumber + " orders.                Sum :" + guestSum
+        binding.guestNumberTextview.text = "Guest " + guestNumber + " Sum :" + guestSum
     }
 
     fun sendMsg2(msg: String, view: View) {
@@ -161,7 +160,6 @@ class OrderFragment : Fragment() {
              table.available = false
              table.haveOrder = true
              table.tableNumber = tableNumber
-
 
             sendToFirebase.sendOrder(table , tableNumber, model.restaurantID)
             view.findNavController().popBackStack()

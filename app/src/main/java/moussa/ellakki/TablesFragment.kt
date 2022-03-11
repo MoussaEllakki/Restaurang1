@@ -1,6 +1,7 @@
 package moussa.ellakki
 
 import AllClasses.IsRightRestaurantID
+import AllClasses.IsThereChanges
 import AllClasses.ViewModelID
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -31,29 +32,39 @@ class TablesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            model.updateAllTabels(model.restaurantID)
+        model.listenToTables()
 
-        val haveBroughtAllt = Observer<Boolean> {
-            if (it == true) {
+        val haveBroughAllOrder = Observer<IsThereChanges> {
+
+            if (it == IsThereChanges.yes) {
+
                 openView()
+
+                model.isThereChanges.value = IsThereChanges.no
 
             }
         }
-        model.haveBroughtAllTables.observe(viewLifecycleOwner, haveBroughtAllt)
+        model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
+
+
+
     }
 
 
 
     fun openView(){
 
+
         var tableRecyclerView = binding.recyclerViewForTables
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
         tableRecyclerView.adapter = tableAdapter
         tableAdapter.model = model
-        tableAdapter.tables = model.restaurant.tables
         tableAdapter.tables = model.tables
         tableAdapter.notifyDataSetChanged()
 
     }
+
+
+
 
 }

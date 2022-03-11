@@ -51,9 +51,6 @@ class KitchenFragment : Fragment() {
 
         model.listenToTables()
 
-
-
-
         val haveBroughAllOrder = Observer<IsThereChanges> {
 
             if (it == IsThereChanges.yes) {
@@ -65,6 +62,9 @@ class KitchenFragment : Fragment() {
             }
         }
         model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
+
+
+
     }
 
 
