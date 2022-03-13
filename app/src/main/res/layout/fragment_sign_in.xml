@@ -10,58 +10,59 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5F24C8"
+        android:background="@drawable/img3"
         tools:context=".MainActivity">
 
         <Button
             android:id="@+id/button_enter"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
-            android:background="@drawable/button_background"
+            android:background="#0023FBDA"
             android:text="Enter"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantID_editText" />
-
-        <TextView
-            android:id="@+id/restaurang_name_textview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="32dp"
-            android:text="Delicious"
-            android:textAlignment="center"
-            android:textColor="#23FBDA"
-            android:textSize="50dp"
+            android:textColor="#5C595A"
+            android:textColorHint="#FFFFFF"
+            android:textSize="34sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurantID_editText" />
 
         <EditText
             android:id="@+id/restaurantID_editText"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/edittext_design"
             android:ems="10"
-            android:hint="  Restaurant ID"
+            android:hint="Type 0000"
             android:inputType="number"
-            android:textColorHint="#9423FBDA"
+            android:textColorHint="#826C6363"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurang_name_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="32dp"
+            android:text="Delicioes"
+            android:textAlignment="center"
+            android:textColor="#5C595A"
+            android:textSize="40dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

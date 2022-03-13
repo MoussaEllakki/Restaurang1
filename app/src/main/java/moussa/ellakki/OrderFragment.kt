@@ -70,6 +70,7 @@ class OrderFragment : Fragment() {
                 )
             } else {
 
+                guest.filWholeOrder()
                 var removeGuest = Guest()
                 guest.guestnumber = (table.guests.size).toString()
                 guest = removeGuest
@@ -152,7 +153,11 @@ class OrderFragment : Fragment() {
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
+            if(guest.sum == 0.0){
+                table.guests.remove(guest)
+            }
 
+            guest.filWholeOrder()
             table.filWholeOrder()
             guest.guestnumber = (table.guests.size).toString()
             var removeGuest = Guest()

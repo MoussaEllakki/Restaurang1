@@ -19,9 +19,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
         var  finishedOrder = mutableListOf<Table>()
 
 
-
-
-        override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
             return finishedOrder.size
         }
 
@@ -36,9 +34,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
         }
 
-
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedViewHolder {
 
             val viewHolder = FinishedViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_kitchen , parent, false)
@@ -75,8 +71,6 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
             holder.itemView.setOnClickListener{
 
-
-
                 var bundle = Bundle()
                 bundle.putParcelable("table", DosentfinishedOrder[position])
 
@@ -100,7 +94,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
     class  DosentFinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
-       // val table_image = view.findViewById<ImageView>(R.id.table_image)
+
 
     }
 

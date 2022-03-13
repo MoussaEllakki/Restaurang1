@@ -29,11 +29,21 @@ class Guest {
     var sum = 0.0
     var orders = mutableListOf<Order>()
     var guestnumber = ""
+    var wholeOrder  = ""
 
+    fun filWholeOrder(){
+
+        for (order in this.orders){
+
+            this.wholeOrder += order.name + " - "
+        }
+
+
+    }
     fun filOleOrder(){
 
         this.sum = 0.0
-       for (order in orders){
+       for (order in this.orders){
 
          this.sum += order.pris
        }

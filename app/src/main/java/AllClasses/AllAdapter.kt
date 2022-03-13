@@ -32,13 +32,10 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         order.name = dishes[position].name!!
         order.pris = dishes[position].pris!!
 
-
-
         holder.foodType.setOnClickListener{
 
             orderFragment.guest.orders.add(order)
             orderFragment.countPrices()
-
         }
 
 

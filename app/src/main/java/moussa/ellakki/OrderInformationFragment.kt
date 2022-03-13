@@ -15,23 +15,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class OrderInformationFragment : Fragment() {
 
-
-    var kitchenAdapter = KitchenAdapter()
     val model: ViewModelID by activityViewModels()
-    var sendToFirebase = SendToFirebase()
-
+    var kitchenAdapter = KitchenAdapter()
     lateinit var table: Table
-
+   var sendToFirebase = SendToFirebase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -49,48 +46,30 @@ class OrderInformationFragment : Fragment() {
 
         var recyclerViewOrderFragment =
             view.findViewById<RecyclerView>(R.id.RV_i_orderinformationFragment)
-        recyclerViewOrderFragment.layoutManager = GridLayoutManager(requireActivity(), 3)
+        recyclerViewOrderFragment.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         recyclerViewOrderFragment.adapter = kitchenAdapter
 
         table = requireArguments().getParcelable<Table>("table")!!
         kitchenAdapter.table = table
 
 
+
+
+
         view.findViewById<Button>(R.id.button_order_finished).setOnClickListener {
-            controlIfAllOrderFinished(view)
+
+            sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
+           view.findNavController().popBackStack()
+
+
         }
 
 
     }
 
 
-    fun controlIfAllOrderFinished(view: View) {
 
-        for (orders in table.tableorders) {
 
-            if (orders.finished == false) {
-
-                sendMsg("Whole order is dosent finished", requireActivity())
-                return
-            }
-        }
-
-        sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
-        view.findNavController().popBackStack()
-
-    }
-
-    fun sendMsg(msg: String, ctx: Context) {
-
-        val builder = AlertDialog.Builder(ctx)
-        builder.setTitle("Message")
-        builder.setMessage(msg)
-        builder.setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
-
-        }
-
-        builder.show()
-    }
 
 
 }

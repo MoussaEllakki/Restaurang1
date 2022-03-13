@@ -10,42 +10,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5F24C8"
+        android:background="#FFFFFF"
         tools:context=".TablesFragment">
-
-        <TextView
-            android:id="@+id/restaurantID_textview"
-            android:layout_width="312dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="50dp"
-            android:text="All Tables"
-            android:textAlignment="center"
-            android:textColor="#00BCD4"
-            android:textSize="40dp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_for_tables"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="80dp"
-            android:background="#5F24C8"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="#FFFFFF"
+            android:foregroundGravity="center_horizontal"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantID_textview"
-            app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/textView6"></androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="Tables"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

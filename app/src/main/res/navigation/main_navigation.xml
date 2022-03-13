@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_mainFragment_to_kitchenFragment"
             app:destination="@id/kitchenFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_getPaidFragment"
+            app:destination="@id/getPaidFragment" />
     </fragment>
     <fragment
         android:id="@+id/kitchenFragment"
@@ -55,4 +58,22 @@
         android:name="moussa.ellakki.OrderInformationFragment"
         android:label="fragment_order_information"
         tools:layout="@layout/fragment_order_information" />
+    <fragment
+        android:id="@+id/getPaidFragment"
+        android:name="moussa.ellakki.GetPaidFragment"
+        android:label="fragment_get_paid"
+        tools:layout="@layout/fragment_get_paid" >
+        <action
+            android:id="@+id/action_getPaidFragment_to_infoFragmentToGetPaid"
+            app:destination="@id/infoFragmentToGetPaid" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragmentToGetPaid"
+        android:name="moussa.ellakki.InfoFragmentToGetPaid"
+        android:label="fragment_info_to_get_paid"
+        tools:layout="@layout/fragment_info_to_get_paid" >
+        <action
+            android:id="@+id/action_infoFragmentToGetPaid_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

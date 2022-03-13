@@ -50,6 +50,14 @@ class MainFragment : Fragment() {
 
         }
 
+        binding.buttonGetPaid.setOnClickListener {
+
+
+         view.findNavController().navigate(R.id.action_mainFragment_to_getPaidFragment)
+
+        }
+
+
 
     }
 
