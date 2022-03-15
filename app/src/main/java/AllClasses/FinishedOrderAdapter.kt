@@ -12,26 +12,16 @@ import androidx.recyclerview.widget.RecyclerView
 import moussa.ellakki.OrderInformationFragment
 import moussa.ellakki.R
 
-
-
 class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 
-        var  finishedOrder = mutableListOf<Table>()
-
+    var  finishedOrder = mutableListOf<Table>()
 
     override fun getItemCount(): Int {
             return finishedOrder.size
         }
 
         override fun onBindViewHolder(holder: FinishedViewHolder, position: Int) {
-
-
-
-       holder.tableView.text = finishedOrder[position].tableNumber
-
-
-
-
+            holder.tableView.text = finishedOrder[position].tableNumber
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedViewHolder {
@@ -41,27 +31,18 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
             )
             return viewHolder
         }
+}
 
-
-    }
-
-
-    class  FinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class  FinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
+}
 
-
-    }
-
-
-
-    class DosentFinishedAdapter : RecyclerView.Adapter<DosentFinishedViewHolder>() {
+class DosentFinishedAdapter : RecyclerView.Adapter<DosentFinishedViewHolder>() {
 
         var  DosentfinishedOrder = mutableListOf<Table>()
 
-        lateinit  var orderInformationFragment : OrderInformationFragment
-
-        override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
             return DosentfinishedOrder.size
         }
 
@@ -90,8 +71,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
     }
 
 
-
-    class  DosentFinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class  DosentFinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
 

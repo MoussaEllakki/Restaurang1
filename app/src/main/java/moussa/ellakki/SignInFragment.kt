@@ -1,6 +1,5 @@
 package moussa.ellakki
 
-
 import AllClasses.IsRightRestaurantID
 import AllClasses.Message
 import AllClasses.Table
@@ -41,27 +40,27 @@ class SignInFragment : Fragment() {
         val isThereRestaurantIDObserver = Observer<IsRightRestaurantID> {
 
             if (it == IsRightRestaurantID.yes) {
+
                 model.getAllt(model.restaurantID)
+                binding.restaurantIDEditText.text.clear()
                 view.findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
 
             } else if (it == IsRightRestaurantID.no) {
-
                 message.sendMsg("Wrong id", requireActivity())
             }
         }
 
         model.isThereREstaurantID.observe(viewLifecycleOwner, isThereRestaurantIDObserver)
 
-         binding.buttonEnter.setOnClickListener {
+        binding.buttonEnter.setOnClickListener {
 
             val restaurangId = binding.restaurantIDEditText.text.toString()
-
-             if (restaurangId.isEmpty()) {
+            if (restaurangId.isEmpty()) {
                 message.sendMsg("Type Restaurang ID First", requireActivity())
                 return@setOnClickListener
-             }
-             model.restaurantID = restaurangId
-             model.controllid(restaurangId)
+            }
+            model.restaurantID = restaurangId
+            model.controllid(restaurangId)
         }
     }
 

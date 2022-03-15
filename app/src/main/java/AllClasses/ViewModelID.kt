@@ -20,18 +20,13 @@ class ViewModelID : ViewModel() {
     var tables = mutableListOf<Table>()
     var restaurant = Restaurant()
 
-
     val isThereChanges : MutableLiveData<IsThereChanges> by lazy {
         MutableLiveData<IsThereChanges>()
     }
 
-
-
     val isThereREstaurantID: MutableLiveData<IsRightRestaurantID> by lazy {
         MutableLiveData<IsRightRestaurantID>()
     }
-
-
 
     var restaurantID = ""
 

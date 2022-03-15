@@ -15,7 +15,6 @@ class MainFragment : Fragment() {
 
     lateinit var binding: FragmentMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -31,35 +30,21 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.buttonTakeOrder.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_tablesFragment)
-
         }
 
 
         binding.goToKitchenButton.setOnClickListener {
-
-
             view.findNavController().navigate(R.id.action_mainFragment_to_kitchenFragment)
-
         }
 
         binding.buttonGetPaid.setOnClickListener {
 
-
-         view.findNavController().navigate(R.id.action_mainFragment_to_getPaidFragment)
-
+            view.findNavController().navigate(R.id.action_mainFragment_to_getPaidFragment)
         }
-
-
-
     }
-
-
 }

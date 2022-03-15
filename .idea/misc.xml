@@ -11,11 +11,14 @@
         <entry key="app/src/main/res/drawable/button_plus_minus.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/edittext_backgroud.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/edittext_design.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/green_guestorder_background.xml" value="0.1435" />
         <entry key="app/src/main/res/drawable/guest_order_background.xml" value="0.1435" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.179" />
         <entry key="app/src/main/res/drawable/menu_backgroud.xml" value="0.188" />
+        <entry key="app/src/main/res/drawable/menu_background.xml" value="0.1435" />
         <entry key="app/src/main/res/drawable/table_layout.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/view_for_buttons.xml" value="0.133" />
+        <entry key="app/src/main/res/drawable/yellow_backgroung_to_guestnumber.xml" value="0.1435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bord_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/edittext_layout.xml" value="0.2833333333333333" />
@@ -39,7 +42,7 @@
         <entry key="app/src/main/res/layout/view_for_order_i_orderinformation_fragment.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/view_for_orders_in_kitchen.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/view_for_table_i_getpaidfragment.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/layout/view_for_table_i_kitchen.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/view_for_table_i_kitchen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_getpaidinfo.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/xxx.xml" value="0.26875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1335" />

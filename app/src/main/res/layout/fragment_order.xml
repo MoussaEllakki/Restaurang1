@@ -55,8 +55,8 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="80dp"
                 android:background="@drawable/button_background"
                 android:text=" Next guest"
                 android:textSize="20sp"
@@ -146,16 +146,14 @@
                 android:id="@+id/button_sendOrder"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="80dp"
                 android:background="@drawable/button_background"
                 android:text="Send order"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/extra_recyclerView" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/orders_recyclerView"

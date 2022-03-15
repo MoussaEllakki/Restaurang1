@@ -33,18 +33,13 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         return vh
     }
 
-
     override fun getItemCount(): Int {
         return tables.size
     }
 
-
     override fun onBindViewHolder(holder: TableViewHolder, position: Int) {
-
         bookAndCancelTable(holder, position)
-
     }
-
 
     fun bookAndCancelTable(holder: TableViewHolder, position: Int) {
 
@@ -60,7 +55,6 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
                 bundle.putString("tableNumber", numberToString)
 
-
                 holder.itemView.findNavController()
                     .navigate(R.id.action_tablesFragment_to_orderFragment, bundle)
             }
@@ -73,9 +67,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
                 sendMsg(message.tableBusy, holder.itemView.context, position.toString())
             }
-
         }
-
     }
 
     fun sendMsg(msg: String, ctx: Context, tableNumber: String) {
@@ -84,23 +76,16 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         builder.setTitle("Message")
         builder.setMessage(msg)
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-
             sendToFirebase.removeBooking( tableNumber, model.restaurantID)
-
-
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 
         }
         builder.show()
     }
-
-
-
 }
 
 class TableViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-
     val table_number = view.findViewById<TextView>(R.id.table_number_textview)
     val table_image = view.findViewById<ImageView>(R.id.table_image)
 

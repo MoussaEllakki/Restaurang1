@@ -33,27 +33,18 @@ class TablesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model.listenToTables()
-
         val haveBroughAllOrder = Observer<IsThereChanges> {
 
             if (it == IsThereChanges.yes) {
 
                 openView()
-
                 model.isThereChanges.value = IsThereChanges.no
-
             }
         }
         model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
-
-
-
     }
 
-
-
     fun openView(){
-
 
         var tableRecyclerView = binding.recyclerViewForTables
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
@@ -61,10 +52,6 @@ class TablesFragment : Fragment() {
         tableAdapter.model = model
         tableAdapter.tables = model.tables
         tableAdapter.notifyDataSetChanged()
-
     }
-
-
-
 
 }

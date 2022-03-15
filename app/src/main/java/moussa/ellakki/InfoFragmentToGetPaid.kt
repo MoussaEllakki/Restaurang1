@@ -38,7 +38,7 @@ class InfoFragmentToGetPaid : Fragment() {
     ): View? {
 
 
-        binding =  FragmentInfoToGetPaidBinding.inflate(inflater, container, false)
+        binding = FragmentInfoToGetPaidBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -48,32 +48,30 @@ class InfoFragmentToGetPaid : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        var recyclerViewGetPaidInfo =   binding.recycklerviewGetPaidInfo
+        var recyclerViewGetPaidInfo = binding.recycklerviewGetPaidInfo
         recyclerViewGetPaidInfo.layoutManager = LinearLayoutManager(requireActivity())
         recyclerViewGetPaidInfo.adapter = adapterInfoToGetPaid
 
         var table = requireArguments().getParcelable<Table>("table")!!
 
-         binding.tablePriceTextview.text = "Table " + table.tableNumber +" Sum " + table.wholesum.toString()
-         adapterInfoToGetPaid.guests = table.guests
+        binding.tablePriceTextview.text =
+            "Table " + table.tableNumber + " Sum " + table.wholesum.toString()
+        adapterInfoToGetPaid.guests = table.guests
 
 
-         binding.buttonGetPaid.setOnClickListener{
+        binding.buttonGetPaid.setOnClickListener {
 
-             var tablenumberToInt = table.tableNumber.toInt()
-             var tableNumberToString = (tablenumberToInt -1 ).toString()
+            var tablenumberToInt = table.tableNumber.toInt()
+            var tableNumberToString = (tablenumberToInt - 1).toString()
 
-             sendToFirebase.removeBooking(tableNumberToString ,model.restaurantID )
-            //TODO: fråga bil vad händer när jag backa till main fragment ?
-              view.findNavController().navigate(R.id.action_infoFragmentToGetPaid_to_mainFragment)
-
-         }
+            sendToFirebase.removeBooking(tableNumberToString, model.restaurantID)
 
 
+            view.findNavController().popBackStack(R.id.mainFragment, false)
+        }
 
 
     }
-
 
 
 }

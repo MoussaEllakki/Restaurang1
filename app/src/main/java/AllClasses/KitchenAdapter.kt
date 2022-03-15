@@ -15,8 +15,7 @@ import moussa.ellakki.R
 
 class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
 
-   lateinit var table  : Table
-
+    lateinit var table: Table
 
     override fun getItemCount(): Int {
         return table.guests.size
@@ -24,11 +23,14 @@ class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
 
     override fun onBindViewHolder(holder: KitchenViewHolder, position: Int) {
 
-         var guestOrderIKitchen = GuestOrderIKitchen()
-        var recyclerView_for_order_i_kitchen = holder.itemView.findViewById<RecyclerView>(R.id.RV_order)
-        recyclerView_for_order_i_kitchen.layoutManager = LinearLayoutManager(holder.itemView.context)
+        val guestOrderIKitchen = GuestOrderIKitchen()
+        val recyclerView_for_order_i_kitchen =
+            holder.itemView.findViewById<RecyclerView>(R.id.RV_order)
+        recyclerView_for_order_i_kitchen.layoutManager =
+            LinearLayoutManager(holder.itemView.context)
         recyclerView_for_order_i_kitchen.adapter = guestOrderIKitchen
-         guestOrderIKitchen.guest = table.guests[position]
+
+        guestOrderIKitchen.guest = table.guests[position]
         holder.orderView.text = "Guest " + table.guests[position].guestnumber
 
     }
@@ -47,52 +49,32 @@ class KitchenViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     var orderView = view.findViewById<TextView>(R.id.textView_i_recyclerVieworder)
 
-
 }
 
 
 class GuestOrderIKitchen : RecyclerView.Adapter<OrderViewHolder>() {
 
-
-      var guest =  Guest()
+    var orderInformationFragment = OrderInformationFragment()
+    var guest = Guest()
 
     override fun getItemCount(): Int {
         return guest.orders.size
     }
 
 
-
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-
-
-
         holder.orderView.text = guest.orders[position].name
 
-
         holder.itemView.setOnClickListener {
-
             if (guest.orders[position].finished == false) {
-
-                holder.orderView.text = guest.guestnumber +"F " + position .toString()
                 guest.orders[position].finished = true
-                holder.orderView.setBackgroundColor(Color.GREEN)
-
-
+                holder.orderView.setBackgroundResource(R.drawable.green_guestorder_background)
 
             } else {
-                holder.orderView.text = guest.guestnumber +" D " +position .toString()
                 guest.orders[position].finished = false
-                holder.orderView.setBackgroundColor(Color.RED)
-
+                holder.orderView.setBackgroundResource(R.drawable.guest_order_background)
             }
-
-
-
-
-
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -109,7 +91,6 @@ class GuestOrderIKitchen : RecyclerView.Adapter<OrderViewHolder>() {
 class OrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     var orderView = view.findViewById<TextView>(R.id.view_for_order_i_orderInformation)
-
 
 }
 

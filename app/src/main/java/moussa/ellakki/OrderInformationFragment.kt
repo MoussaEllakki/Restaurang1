@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -24,7 +25,8 @@ class OrderInformationFragment : Fragment() {
     val model: ViewModelID by activityViewModels()
     var kitchenAdapter = KitchenAdapter()
     lateinit var table: Table
-   var sendToFirebase = SendToFirebase()
+    var sendToFirebase = SendToFirebase()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +46,7 @@ class OrderInformationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var recyclerViewOrderFragment =
-            view.findViewById<RecyclerView>(R.id.RV_i_orderinformationFragment)
+        var recyclerViewOrderFragment = view.findViewById<RecyclerView>(R.id.RV_i_orderinformationFragment)
         recyclerViewOrderFragment.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         recyclerViewOrderFragment.adapter = kitchenAdapter
 
@@ -53,13 +54,32 @@ class OrderInformationFragment : Fragment() {
         kitchenAdapter.table = table
 
 
-
-
-
         view.findViewById<Button>(R.id.button_order_finished).setOnClickListener {
 
-            sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
-           view.findNavController().popBackStack()
+            var orderdone = true
+            for(done_guest in table.guests)
+            {
+                for(done_order in done_guest.orders)
+                {
+                    if(done_order.finished == false)
+                    {
+                        orderdone = false
+                    }
+                }
+            }
+
+            if(orderdone)
+            {
+
+                sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
+                view.findNavController().popBackStack()
+
+
+            } else {
+
+             sendMsg(requireActivity(), view)
+
+            }
 
 
         }
@@ -68,6 +88,23 @@ class OrderInformationFragment : Fragment() {
     }
 
 
+    fun sendMsg( ctx: Context, view : View) {
+
+        val builder = AlertDialog.Builder(ctx)
+        builder.setTitle("Message")
+        builder.setMessage("You are not finished all orders! do you want to finsih it anyway?")
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+
+
+            sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
+            view.findNavController().popBackStack()
+
+        }
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+
+        }
+        builder.show()
+    }
 
 
 

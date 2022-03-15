@@ -167,7 +167,7 @@ class OrderFragment : Fragment() {
              table.tableNumber = tableNumber
 
             sendToFirebase.sendOrder(table , tableNumber, model.restaurantID)
-            view.findNavController().popBackStack()
+            view.findNavController().popBackStack(R.id.mainFragment, false)
         }
         builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
         }
