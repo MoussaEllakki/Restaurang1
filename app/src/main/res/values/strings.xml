@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restaurang1</string>
+    <string name="app_name">Delicious</string>
     <string name="signInText">Sign in</string>
     <string name="signInButton">Sign in</string>
     <string name="choose_table_textview">Choose Table</string>

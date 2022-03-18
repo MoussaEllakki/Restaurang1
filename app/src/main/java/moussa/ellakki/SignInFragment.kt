@@ -34,13 +34,11 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         model.isThereREstaurantID.value = IsRightRestaurantID.maybe
 
         val isThereRestaurantIDObserver = Observer<IsRightRestaurantID> {
 
             if (it == IsRightRestaurantID.yes) {
-
                 model.getAllt(model.restaurantID)
                 binding.restaurantIDEditText.text.clear()
                 view.findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
@@ -49,12 +47,10 @@ class SignInFragment : Fragment() {
                 message.sendMsg("Wrong id", requireActivity())
             }
         }
-
         model.isThereREstaurantID.observe(viewLifecycleOwner, isThereRestaurantIDObserver)
-
         binding.buttonEnter.setOnClickListener {
-
             val restaurangId = binding.restaurantIDEditText.text.toString()
+
             if (restaurangId.isEmpty()) {
                 message.sendMsg("Type Restaurang ID First", requireActivity())
                 return@setOnClickListener
@@ -63,5 +59,4 @@ class SignInFragment : Fragment() {
             model.controllid(restaurangId)
         }
     }
-
 }

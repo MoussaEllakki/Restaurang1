@@ -31,7 +31,6 @@ class OrderFragment : Fragment() {
     var sendToFirebase = SendToFirebase()
     var table = Table()
     var message = Message()
-
     var dishesAdapter = DishesAdapter()
     var drinkAdapter = DrinkAdapter()
     var extraAdapter = ExtraAdapter()

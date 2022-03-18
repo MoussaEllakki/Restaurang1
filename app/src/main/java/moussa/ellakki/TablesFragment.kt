@@ -31,21 +31,18 @@ class TablesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         model.listenToTables()
+
         val haveBroughAllOrder = Observer<IsThereChanges> {
-
             if (it == IsThereChanges.yes) {
-
-                openView()
+               showTables()
                 model.isThereChanges.value = IsThereChanges.no
             }
         }
         model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
     }
 
-    fun openView(){
-
+    fun showTables(){
         var tableRecyclerView = binding.recyclerViewForTables
         tableRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
         tableRecyclerView.adapter = tableAdapter

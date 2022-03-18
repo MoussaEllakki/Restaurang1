@@ -19,6 +19,7 @@ class ViewModelID : ViewModel() {
 
     var tables = mutableListOf<Table>()
     var restaurant = Restaurant()
+    var restaurantID = ""
 
     val isThereChanges : MutableLiveData<IsThereChanges> by lazy {
         MutableLiveData<IsThereChanges>()
@@ -28,48 +29,33 @@ class ViewModelID : ViewModel() {
         MutableLiveData<IsRightRestaurantID>()
     }
 
-    var restaurantID = ""
-
     init {
         database = Firebase.database.reference
     }
 
-
     fun controllid(restaurangID: String) {
-
         database.child("AllRestaurant").get().addOnSuccessListener {
 
             for (childsnap in it.children) {
-
                 val restaurantIdInFirebase = childsnap.getValue<String>()
                 if (restaurangID == restaurantIdInFirebase) {
                     isThereREstaurantID.value = IsRightRestaurantID.yes
                     return@addOnSuccessListener
                 }
             }
-
             isThereREstaurantID.value = IsRightRestaurantID.no
         }
     }
 
-
-
-
-
     fun getAllt(restaurantId: String){
-
         database.child("Restaurant").child(restaurantId).get().addOnSuccessListener {
-
-           var  res = it.getValue<Restaurant>()!!
+            var  res = it.getValue<Restaurant>()!!
             this.restaurant = res
         }
     }
 
 
     fun listenToTables(){
-
-
-
         database.child("Restaurant").child(this.restaurantID)
             .child("tables").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -89,11 +75,6 @@ class ViewModelID : ViewModel() {
                 }
             })
     }
-
-
-
-
-
 
 }
 

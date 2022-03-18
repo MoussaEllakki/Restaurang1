@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import moussa.ellakki.databinding.FragmentMainBinding
 
-
 class MainFragment : Fragment() {
 
     lateinit var binding: FragmentMainBinding
@@ -20,7 +19,6 @@ class MainFragment : Fragment() {
         arguments?.let {
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,18 +30,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.buttonTakeOrder.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_tablesFragment)
         }
-
-
         binding.goToKitchenButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_kitchenFragment)
         }
-
         binding.buttonGetPaid.setOnClickListener {
-
             view.findNavController().navigate(R.id.action_mainFragment_to_getPaidFragment)
         }
     }

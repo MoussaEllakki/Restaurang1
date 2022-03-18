@@ -16,7 +16,7 @@ class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetPaidViewHolder {
             val vh = GetPaidViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_getpaidfragment, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_kitchen, parent, false)
             )
             return vh
         }
@@ -51,7 +51,7 @@ class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
     class GetPaidViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
 
 
-        val viewForgetPaid = view.findViewById<TextView>(R.id.textview_i_getpaidFragment)
+        val viewForgetPaid = view.findViewById<TextView>(R.id.table_view_i_kitchen)
 
     }
 

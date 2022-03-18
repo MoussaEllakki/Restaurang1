@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/infoTextView_getPaidInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFC107"
+        android:background="@drawable/view_for_guest_i_paidfragment"
+        android:fontFamily="serif"
+        android:paddingStart="5dp"
         android:text="TextView"
-        android:textSize="30sp"
-        android:textStyle="italic"
+        android:textSize="24sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +26,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
+        android:fontFamily="serif"
+        android:paddingStart="5dp"
         android:text="TextView"
-        android:textSize="25sp"
-        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView_getPaidInfo" />

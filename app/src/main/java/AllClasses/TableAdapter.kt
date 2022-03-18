@@ -45,6 +45,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
         val number = position + 1
         val numberToString = number.toString()
+        
         holder.table_number.text = numberToString
 
         if (tables[position].available == true) {
