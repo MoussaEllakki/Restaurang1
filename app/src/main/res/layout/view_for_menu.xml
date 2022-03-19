@@ -11,7 +11,7 @@
         android:id="@+id/food_button"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:background="@drawable/menu_background"
+        android:background="@drawable/style_for_button"
         android:fontFamily="serif"
         android:text="Button"
         android:textAlignment="center"

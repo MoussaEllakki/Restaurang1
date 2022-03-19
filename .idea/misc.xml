@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.179" />
+        <entry key="app/src/main/res/drawable/att_pressed_o_button.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/background_for_menu_i_orderfragment.xml" value="0.1435" />
         <entry key="app/src/main/res/drawable/bord_background.xml" value="0.188" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.188" />
@@ -16,6 +17,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.179" />
         <entry key="app/src/main/res/drawable/menu_backgroud.xml" value="0.188" />
         <entry key="app/src/main/res/drawable/menu_background.xml" value="0.1435" />
+        <entry key="app/src/main/res/drawable/style_for_button.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/table_layout.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/view_for_buttons.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/view_for_guest_i_paidfragment.xml" value="0.1135" />

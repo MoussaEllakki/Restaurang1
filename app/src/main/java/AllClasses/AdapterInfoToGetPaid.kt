@@ -18,11 +18,9 @@ class AdapterInfoToGetPaid : RecyclerView.Adapter<GetPaidInfoViewHolder>() {
         return viewHolder
     }
 
-
     override fun getItemCount(): Int {
         return guests.size
     }
-
 
     override fun onBindViewHolder(holder: GetPaidInfoViewHolder, position: Int) {
         holder.guestprice.text =
@@ -30,7 +28,6 @@ class AdapterInfoToGetPaid : RecyclerView.Adapter<GetPaidInfoViewHolder>() {
         holder.guestInfodetails.text = guests[position].wholeOrder
     }
 }
-
 
 class GetPaidInfoViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
     val guestprice = view.findViewById<TextView>(R.id.infoTextView_getPaidInfo)

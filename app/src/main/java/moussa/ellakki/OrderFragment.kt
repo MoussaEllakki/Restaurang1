@@ -27,21 +27,17 @@ import moussa.ellakki.databinding.FragmentOrderBinding
 
 class OrderFragment : Fragment() {
 
+    var tableNumber = ""
     var guest = Guest()
-    var sendToFirebase = SendToFirebase()
     var table = Table()
     var message = Message()
-    var dishesAdapter = DishesAdapter()
     var drinkAdapter = DrinkAdapter()
     var extraAdapter = ExtraAdapter()
-    var guestOrdersAdapter = GuestOrdersAdapter()
-
-    lateinit var orderRecyclerView: RecyclerView
-
-    var tableNumber = ""
-
-
+    var dishesAdapter = DishesAdapter()
+    var sendToFirebase = SendToFirebase()
     lateinit var binding: FragmentOrderBinding
+    lateinit var orderRecyclerView: RecyclerView
+    var guestOrdersAdapter = GuestOrdersAdapter()
     val model: ViewModelID by activityViewModels()
 
     override fun onCreateView(
@@ -55,20 +51,16 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tableNumber = requireArguments().getString("tableNumber").toString()
-
         showMenue()
         showPrices()
 
         binding.buttonNext.setOnClickListener {
-
             if (guest.sum == 0.0) {
-
                 message.sendMsg(
                     "You havent taken order for guest " + (table.guests.size).toString(),
                     requireActivity()
                 )
             } else {
-
                 guest.filWholeOrder()
                 var removeGuest = Guest()
                 guest.guestnumber = (table.guests.size).toString()
@@ -77,8 +69,6 @@ class OrderFragment : Fragment() {
                 showPrices()
             }
         }
-
-
         binding.buttonSendOrder.setOnClickListener {
 
             if (table.wholesum == 0.0) {
@@ -87,22 +77,18 @@ class OrderFragment : Fragment() {
             else {
 
                 if (guest.sum == 0.0){
-
                     sendMsg2(message.UserDosentOrder, view)
                 }
                 else {
-
                     sendMsg2(message.sendOrderConfimation,view)
                 }
-
             }
         }
     }
 
 
     fun showMenue() {
-
-       table.guests.add(guest)
+        table.guests.add(guest)
 
         var menuRecyclerView = binding.menuRecyclerView
         menuRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
@@ -164,7 +150,6 @@ class OrderFragment : Fragment() {
              table.available = false
              table.haveOrder = true
              table.tableNumber = tableNumber
-
             sendToFirebase.sendOrder(table , tableNumber, model.restaurantID)
             view.findNavController().popBackStack(R.id.mainFragment, false)
         }
