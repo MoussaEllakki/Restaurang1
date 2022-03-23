@@ -27,7 +27,6 @@ class OrderInformationFragment : Fragment() {
     lateinit var table: Table
     var sendToFirebase = SendToFirebase()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,7 +41,6 @@ class OrderInformationFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_order_information, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,10 +51,9 @@ class OrderInformationFragment : Fragment() {
         table = requireArguments().getParcelable<Table>("table")!!
         kitchenAdapter.table = table
 
-
         view.findViewById<Button>(R.id.button_order_finished).setOnClickListener {
-
             var orderdone = true
+
             for(done_guest in table.guests)
             {
                 for(done_order in done_guest.orders)
@@ -70,23 +67,15 @@ class OrderInformationFragment : Fragment() {
 
             if(orderdone)
             {
-
                 sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
                 view.findNavController().popBackStack()
-
 
             } else {
 
              sendMsg(requireActivity(), view)
-
             }
-
-
         }
-
-
     }
-
 
     fun sendMsg( ctx: Context, view : View) {
 
@@ -94,7 +83,6 @@ class OrderInformationFragment : Fragment() {
         builder.setTitle("Message")
         builder.setMessage("You are not finished all orders! do you want to finsih it anyway?")
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-
 
             sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)
             view.findNavController().popBackStack()
@@ -105,8 +93,4 @@ class OrderInformationFragment : Fragment() {
         }
         builder.show()
     }
-
-
-
-
 }

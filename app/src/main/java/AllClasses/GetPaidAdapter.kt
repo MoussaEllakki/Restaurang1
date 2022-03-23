@@ -11,7 +11,6 @@ import moussa.ellakki.R
 
 class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
 
-
     var tables = mutableListOf<Table>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetPaidViewHolder {
@@ -21,38 +20,26 @@ class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
             return vh
         }
 
-
-        override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
             return tables.size
         }
 
+    override fun onBindViewHolder(holder:GetPaidViewHolder, position: Int) {
+        holder.viewForgetPaid.text = tables[position].tableNumber
 
-        override fun onBindViewHolder(holder:GetPaidViewHolder, position: Int) {
-
-            holder.viewForgetPaid.text = tables[position].tableNumber
-
-
-            holder.itemView.setOnClickListener {
-
-                holder.viewForgetPaid.text = tables[position].tableNumber + "vvv"
+        holder.itemView.setOnClickListener {
+               holder.viewForgetPaid.text = tables[position].tableNumber + "vvv"
                 var bundle = Bundle()
                 bundle.putParcelable("table",tables[position])
 
                 holder.itemView.findNavController()
                     .navigate(R.id.action_getPaidFragment_to_infoFragmentToGetPaid , bundle)
-
-            }
-
-
         }
-
+    }
 }
 
     class GetPaidViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-
-
         val viewForgetPaid = view.findViewById<TextView>(R.id.table_view_i_kitchen)
-
     }
 
 

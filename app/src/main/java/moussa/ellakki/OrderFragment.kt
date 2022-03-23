@@ -57,7 +57,7 @@ class OrderFragment : Fragment() {
         binding.buttonNext.setOnClickListener {
             if (guest.sum == 0.0) {
                 message.sendMsg(
-                    "You havent taken order for guest " + (table.guests.size).toString(),
+                    "Guest " + (table.guests.size).toString() + " hasn't ordered",
                     requireActivity()
                 )
             } else {
@@ -72,12 +72,12 @@ class OrderFragment : Fragment() {
         binding.buttonSendOrder.setOnClickListener {
 
             if (table.wholesum == 0.0) {
-                message.sendMsg("There is no order", requireActivity())
+                message.sendMsg("There is no order to send", requireActivity())
             }
             else {
 
                 if (guest.sum == 0.0){
-                    sendMsg2(message.UserDosentOrder, view)
+                    sendMsg2("Guest " + (table.guests.size).toString() + " hasn't ordered do you want to send order anyway?", view)
                 }
                 else {
                     sendMsg2(message.sendOrderConfimation,view)
@@ -129,7 +129,7 @@ class OrderFragment : Fragment() {
         guestOrdersAdapter.orders = guest.orders
         guestOrdersAdapter.notifyDataSetChanged()
         binding.priceTableTextview.text  = "Total : " + tableSum
-        binding.guestNumberTextview.text = "Guest " + guestNumber + " Sum :" + guestSum
+        binding.guestNumberTextview.text = "Guest " + guestNumber + " Sum : " + guestSum
     }
 
     fun sendMsg2(msg: String, view: View) {

@@ -19,9 +19,7 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
         return dishes.size
     }
 
-
     override fun onBindViewHolder(holder: DishesViewHolder, position: Int) {
-
         holder.foodType.text = dishes[position].name + " " + dishes[position].pris.toString()
 
         var order = Order()
@@ -33,7 +31,6 @@ class DishesAdapter : RecyclerView.Adapter<DishesViewHolder>() {
             orderFragment.countPrices()
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishesViewHolder {
 
@@ -52,17 +49,12 @@ class DishesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
     lateinit var orderFragment: OrderFragment
-
     var drinks = mutableListOf<Drink>()
-
-
     override fun getItemCount(): Int {
         return drinks.size
     }
 
-
     override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
-
         holder.foodType.text = drinks[position].name + " " + drinks[position].pris.toString()
 
         var order = Order()
@@ -75,7 +67,6 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder {
         val viewHolder = DrinksViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.view_for_menu, parent, false)
@@ -84,14 +75,11 @@ class DrinkAdapter : RecyclerView.Adapter<DrinksViewHolder>() {
     }
 }
 
-
 class DrinksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var foodType = view.findViewById<Button>(R.id.food_button)
 }
 
-
 class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
-
     var extras = mutableListOf<Extra>()
     lateinit var orderFragment: OrderFragment
 
@@ -99,9 +87,7 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
         return extras.size
     }
 
-
     override fun onBindViewHolder(holder: ExtraViewHolder, position: Int) {
-
         holder.foodType.text = extras[position].name + " " + extras[position].pris.toString()
 
         var order = Order()
@@ -114,7 +100,6 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExtraViewHolder {
         val viewHolder = ExtraViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.view_for_menu, parent, false)
@@ -123,40 +108,27 @@ class ExtraAdapter : RecyclerView.Adapter<ExtraViewHolder>() {
     }
 }
 
-
 class ExtraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
     var foodType = view.findViewById<Button>(R.id.food_button)
-
 }
-
 
 class GuestOrdersAdapter : RecyclerView.Adapter<GuestOrderViewHolder>() {
     var orders = mutableListOf<Order>()
-
     lateinit var orderFragment: OrderFragment
-
 
     override fun getItemCount(): Int {
         return orders.size
     }
 
-
     override fun onBindViewHolder(holder: GuestOrderViewHolder, position: Int) {
-
         holder.orderText.text = orders[position].name
-
         var order = orders[position]
 
-
-
         holder.deleteOrder.setOnClickListener {
-
             orderFragment.guest.orders.remove(order)
             orderFragment.countPrices()
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestOrderViewHolder {
         val viewHolder = GuestOrderViewHolder(
@@ -166,7 +138,6 @@ class GuestOrdersAdapter : RecyclerView.Adapter<GuestOrderViewHolder>() {
         return viewHolder
     }
 }
-
 
 class GuestOrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var orderText = view.findViewById<TextView>(R.id.order_textview)

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import moussa.ellakki.databinding.FragmentMainBinding
@@ -39,5 +40,22 @@ class MainFragment : Fragment() {
         binding.buttonGetPaid.setOnClickListener {
             view.findNavController().navigate(R.id.action_mainFragment_to_getPaidFragment)
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+            }
+        })
+
+        binding.logOutButton.setOnClickListener {
+
+            view.findNavController().navigate((R.id.action_mainFragment_to_signInFragment2))
+        }
+
+
     }
+
+
+
+
+
 }

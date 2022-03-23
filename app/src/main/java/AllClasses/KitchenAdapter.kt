@@ -36,7 +36,6 @@ class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KitchenViewHolder {
-
         val viewHolder = KitchenViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_view, parent, false)
         )
@@ -46,21 +45,18 @@ class KitchenAdapter : RecyclerView.Adapter<KitchenViewHolder>() {
 
 
 class KitchenViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
     var orderView = view.findViewById<TextView>(R.id.textView_i_recyclerVieworder)
 
 }
 
 
 class GuestOrderIKitchen : RecyclerView.Adapter<OrderViewHolder>() {
-
     var orderInformationFragment = OrderInformationFragment()
     var guest = Guest()
 
     override fun getItemCount(): Int {
         return guest.orders.size
     }
-
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         holder.orderView.text = guest.orders[position].name

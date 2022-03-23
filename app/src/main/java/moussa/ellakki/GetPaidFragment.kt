@@ -37,52 +37,45 @@ class GetPaidFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         model.listenToTables()
-
         val haveBroughAllOrder = Observer<IsThereChanges> {
-
             if (it == IsThereChanges.yes) {
-
                 openView()
-
                 model.isThereChanges.value = IsThereChanges.no
-
             }
         }
         model.isThereChanges.observe(viewLifecycleOwner, haveBroughAllOrder)
-
-
     }
 
-
     fun openView() {
-
         var recyclerViewGetPaid = binding.recyclerViewIGetPaidFragment
         recyclerViewGetPaid.layoutManager = GridLayoutManager(requireActivity(), 3)
         recyclerViewGetPaid.adapter = getPaidAdapter
         sortTables()
     }
 
-
     fun sortTables() {
 
         var tablesFinished = mutableListOf<Table>()
         for (table in model.tables) {
-
             if (table.orderFinished == true) {
-
                 tablesFinished.add(table)
             }
         }
 
-        getPaidAdapter.tables = tablesFinished
-        getPaidAdapter.notifyDataSetChanged()
-
+        if (tablesFinished.size == 0){
+            binding.textIGetPaidFragment.text = "There is no orders to get paid"
+            getPaidAdapter.tables = tablesFinished
+            getPaidAdapter.notifyDataSetChanged()
+        }
+        else{
+            getPaidAdapter.tables = tablesFinished
+            getPaidAdapter.notifyDataSetChanged()
+            binding.textIGetPaidFragment.text = "Choose the table you want to get paid frome"
+        }
     }
-
 
 }

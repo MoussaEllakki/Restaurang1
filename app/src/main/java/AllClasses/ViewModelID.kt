@@ -54,7 +54,6 @@ class ViewModelID : ViewModel() {
         }
     }
 
-
     fun listenToTables(){
         database.child("Restaurant").child(this.restaurantID)
             .child("tables").addValueEventListener(object : ValueEventListener {

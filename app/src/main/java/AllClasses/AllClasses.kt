@@ -10,28 +10,19 @@ open class Order() {
     var finished = false
 }
 
-class Dish() : Order() {
+class Dish() : Order() {}
 
-}
+class Drink : Order() {}
 
-class Drink : Order() {
-
-
-}
-
-class Extra() : Order() {
-
-}
+class Extra() : Order() {}
 
 class Guest {
-
     var sum = 0.0
     var orders = mutableListOf<Order>()
     var guestnumber = ""
     var wholeOrder = ""
 
     fun filWholeOrder() {
-
         for (order in this.orders) {
             this.wholeOrder += order.name + " - "
         }
@@ -40,7 +31,6 @@ class Guest {
     fun filOleOrder() {
         this.sum = 0.0
         for (order in this.orders) {
-
             this.sum += order.pris
         }
     }
@@ -48,7 +38,6 @@ class Guest {
 
 @Parcelize
 class Table : Parcelable {
-
     var available = true
     var wholesum = 0.0
     var tableNumber = ""
@@ -57,19 +46,14 @@ class Table : Parcelable {
     var guests = mutableListOf<Guest>()
     var tableorders = mutableListOf<Order>()
 
-
-    fun countTableSum() {
+ fun countTableSum() {
         this.wholesum = 0.0
         for (guest in guests) {
-
             this.wholesum += guest.sum
-
         }
-
-    }
+ }
 
     fun filWholeOrder() {
-
         for (guest in this.guests) {
 
             for (guestOrder in guest.orders) {
@@ -80,7 +64,6 @@ class Table : Parcelable {
 }
 
 class Restaurant {
-
     var tables = mutableListOf<Table>()
     var dishes = mutableListOf<Dish>()
     var drinks = mutableListOf<Drink>()

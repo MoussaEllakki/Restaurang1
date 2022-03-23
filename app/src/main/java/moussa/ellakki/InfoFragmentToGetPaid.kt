@@ -22,13 +22,11 @@ class InfoFragmentToGetPaid : Fragment() {
     lateinit var binding: FragmentInfoToGetPaidBinding
     var sendToFirebase = SendToFirebase()
     val model: ViewModelID by activityViewModels()
-
     var adapterInfoToGetPaid = AdapterInfoToGetPaid()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -37,16 +35,13 @@ class InfoFragmentToGetPaid : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         binding = FragmentInfoToGetPaidBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         var recyclerViewGetPaidInfo = binding.recycklerviewGetPaidInfo
         recyclerViewGetPaidInfo.layoutManager = LinearLayoutManager(requireActivity())
@@ -58,20 +53,13 @@ class InfoFragmentToGetPaid : Fragment() {
             "Table " + table.tableNumber + " Sum " + table.wholesum.toString()
         adapterInfoToGetPaid.guests = table.guests
 
-
         binding.buttonGetPaid.setOnClickListener {
 
             var tablenumberToInt = table.tableNumber.toInt()
             var tableNumberToString = (tablenumberToInt - 1).toString()
 
             sendToFirebase.removeBooking(tableNumberToString, model.restaurantID)
-
-
             view.findNavController().popBackStack(R.id.mainFragment, false)
         }
-
-
     }
-
-
 }

@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_mainFragment_to_getPaidFragment"
             app:destination="@id/getPaidFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_signInFragment2"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/kitchenFragment"

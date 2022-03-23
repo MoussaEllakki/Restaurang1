@@ -44,7 +44,7 @@ class SignInFragment : Fragment() {
                 view.findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
 
             } else if (it == IsRightRestaurantID.no) {
-                message.sendMsg("Wrong id", requireActivity())
+                message.sendMsg("Wrong ID! Restaurant ID is: 0000", requireActivity())
             }
         }
         model.isThereREstaurantID.observe(viewLifecycleOwner, isThereRestaurantIDObserver)
@@ -52,7 +52,7 @@ class SignInFragment : Fragment() {
             val restaurangId = binding.restaurantIDEditText.text.toString()
 
             if (restaurangId.isEmpty()) {
-                message.sendMsg("Type Restaurang ID First", requireActivity())
+                message.sendMsg("Type restaurant ID first! Restaurant ID is: 0000", requireActivity())
                 return@setOnClickListener
             }
             model.restaurantID = restaurangId

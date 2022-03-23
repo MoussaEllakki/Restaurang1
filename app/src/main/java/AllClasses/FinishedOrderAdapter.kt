@@ -34,8 +34,7 @@ class FinishedOrderAdapter : RecyclerView.Adapter<FinishedViewHolder>() {
 }
 
 class  FinishedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
+    val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
 }
 
 class DosentFinishedAdapter : RecyclerView.Adapter<DosentFinishedViewHolder>() {
