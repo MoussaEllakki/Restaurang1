@@ -81,7 +81,7 @@ class OrderInformationFragment : Fragment() {
 
         val builder = AlertDialog.Builder(ctx)
         builder.setTitle("Message")
-        builder.setMessage("You are not finished all orders! do you want to finsih it anyway?")
+        builder.setMessage("Are you sure you want to complete the order?")
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
 
             sendToFirebase.finishOrder(table.tableNumber, model.restaurantID)

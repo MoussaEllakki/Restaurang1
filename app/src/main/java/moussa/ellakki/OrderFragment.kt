@@ -77,7 +77,7 @@ class OrderFragment : Fragment() {
             else {
 
                 if (guest.sum == 0.0){
-                    sendMsg2("Guest " + (table.guests.size).toString() + " hasn't ordered do you want to send order anyway?", view)
+                    sendMsg2("Guest " + (table.guests.size).toString() + " hasn't ordered. Do you want to send order anyway?", view)
                 }
                 else {
                     sendMsg2(message.sendOrderConfimation,view)

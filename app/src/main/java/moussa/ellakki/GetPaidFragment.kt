@@ -67,14 +67,14 @@ class GetPaidFragment : Fragment() {
         }
 
         if (tablesFinished.size == 0){
-            binding.textIGetPaidFragment.text = "There is no orders to get paid"
+            binding.textIGetPaidFragment.text = "No pending payments"
             getPaidAdapter.tables = tablesFinished
             getPaidAdapter.notifyDataSetChanged()
         }
         else{
             getPaidAdapter.tables = tablesFinished
             getPaidAdapter.notifyDataSetChanged()
-            binding.textIGetPaidFragment.text = "Choose the table you want to get paid frome"
+            binding.textIGetPaidFragment.text = "Choose table to receive payment from"
         }
     }
 

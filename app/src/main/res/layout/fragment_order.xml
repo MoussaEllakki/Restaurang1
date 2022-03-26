@@ -11,7 +11,7 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#13181616"
+        android:background="#FFFFFF"
         tools:context=".OrderFragment">
 
 
@@ -57,14 +57,14 @@
 
             <Button
                 android:id="@+id/button_next"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="80dp"
-                android:background="@drawable/pic1"
+                android:background="@drawable/btn_logout"
                 android:text=" Next guest"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -132,7 +132,7 @@
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -149,20 +149,20 @@
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textColor="#000000"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/button_sendOrder"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginBottom="80dp"
-                android:background="@drawable/pic1"
+                android:background="@drawable/btn_logout"
                 android:text="Send order"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"

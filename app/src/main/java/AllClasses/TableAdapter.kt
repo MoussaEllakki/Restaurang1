@@ -28,7 +28,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TableViewHolder {
         val vh = TableViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.table_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.view_for_table_i_kitchen, parent, false)
         )
         return vh
     }
@@ -46,11 +46,11 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
         val number = position + 1
         val numberToString = number.toString()
         
-        holder.table_number.text = numberToString
+        holder.tableView.text = numberToString
 
         if (tables[position].available == true) {
 
-            holder.table_image.setImageResource(R.drawable.tablegreen)
+            holder.tableView.setBackgroundResource(R.drawable.tablegreen)
 
             holder.itemView.setOnClickListener {
 
@@ -62,7 +62,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
         } else {
 
-            holder.table_image.setImageResource(R.drawable.tablered)
+            holder.tableView.setBackgroundResource(R.drawable.tablered)
 
             holder.itemView.setOnClickListener {
 
@@ -87,8 +87,7 @@ class TableAdapter : RecyclerView.Adapter<TableViewHolder>() {
 }
 
 class TableViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-    val table_number = view.findViewById<TextView>(R.id.table_number_textview)
-    val table_image = view.findViewById<ImageView>(R.id.table_image)
+    val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
 
 }
 

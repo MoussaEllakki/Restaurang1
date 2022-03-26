@@ -22,6 +22,7 @@
             android:background="#0023FBDA"
             android:fontFamily="serif"
             android:text="Take order"
+            android:textAllCaps="false"
             android:textColor="#5C595A"
             android:textSize="34sp"
             android:textStyle="normal"
@@ -42,6 +43,7 @@
             android:background="#0023FBDA"
             android:fontFamily="serif"
             android:text="Kitchen"
+            android:textAllCaps="false"
             android:textColor="#5C595A"
             android:textSize="34sp"
             android:textStyle="normal"
@@ -59,7 +61,8 @@
             android:layout_marginEnd="50dp"
             android:background="#0023FBDA"
             android:fontFamily="serif"
-            android:text="Get Paid"
+            android:text="Payment"
+            android:textAllCaps="false"
             android:textColor="#5C595A"
             android:textSize="34sp"
             android:textStyle="normal"
@@ -70,11 +73,9 @@
 
         <Button
             android:id="@+id/log_out_button"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="142dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="142dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/btn_logout"
             android:fontFamily="sans-serif"
             android:text="Log out"
@@ -82,9 +83,10 @@
             android:textColor="#060505"
             android:textSize="16sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_getPaid" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

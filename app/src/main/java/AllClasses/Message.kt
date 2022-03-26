@@ -8,8 +8,7 @@ import androidx.appcompat.app.AlertDialog
 class Message {
 
     var tableBusy =
-        "This Table is not availble, if you want to use it press yes , but you gonna remove whole its order" +
-                "otherwise press no to take another one"
+        "This table is not available. Would you like to use it anyway? This will clear all orders"
     var sendOrderConfimation = "Are you sure you want to send order?"
 
     fun sendMsg(msg: String, act: Activity) {

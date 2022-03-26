@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +26,12 @@ class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
         }
 
     override fun onBindViewHolder(holder:GetPaidViewHolder, position: Int) {
-        holder.viewForgetPaid.text = tables[position].tableNumber
+
+        holder.tableView.text = tables[position].tableNumber
 
         holder.itemView.setOnClickListener {
-               holder.viewForgetPaid.text = tables[position].tableNumber + "vvv"
+
+
                 var bundle = Bundle()
                 bundle.putParcelable("table",tables[position])
 
@@ -39,7 +42,7 @@ class GetPaidAdapter : RecyclerView.Adapter<GetPaidViewHolder>() {
 }
 
     class GetPaidViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
-        val viewForgetPaid = view.findViewById<TextView>(R.id.table_view_i_kitchen)
+        val tableView = view.findViewById<TextView>(R.id.table_view_i_kitchen)
     }
 
 

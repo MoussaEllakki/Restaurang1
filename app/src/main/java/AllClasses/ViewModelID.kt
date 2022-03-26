@@ -49,8 +49,8 @@ class ViewModelID : ViewModel() {
 
     fun getAllt(restaurantId: String){
         database.child("Restaurant").child(restaurantId).get().addOnSuccessListener {
-            var  res = it.getValue<Restaurant>()!!
-            this.restaurant = res
+            var  restaurantFB = it.getValue<Restaurant>()!!
+            this.restaurant = restaurantFB
         }
     }
 
