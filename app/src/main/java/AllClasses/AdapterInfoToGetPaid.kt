@@ -23,7 +23,7 @@ class AdapterInfoToGetPaid : RecyclerView.Adapter<GetPaidInfoViewHolder>() {
 
     override fun onBindViewHolder(holder: GetPaidInfoViewHolder, position: Int) {
         holder.guestprice.text =
-            "Guest " + guests[position].guestnumber + " Price: " + guests[position].sum
+            "Guest " + guests[position].guestnumber + " sum: " + guests[position].sum
         holder.guestInfodetails.text = guests[position].wholeOrder
     }
 }

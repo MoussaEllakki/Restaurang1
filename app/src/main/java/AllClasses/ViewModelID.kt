@@ -51,6 +51,8 @@ class ViewModelID : ViewModel() {
         database.child("Restaurant").child(restaurantId).get().addOnSuccessListener {
             var  restaurantFB = it.getValue<Restaurant>()!!
             this.restaurant = restaurantFB
+
+            
         }
     }
 
